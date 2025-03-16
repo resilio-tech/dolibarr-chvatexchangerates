@@ -1100,10 +1100,8 @@ class ExRatesUpdater extends CommonObject
         // Currencies being used
         $currency_used = array();
         $sql = "SELECT code FROM " . $this->db->prefix() . "multicurrency";
-		$sql .= " WHERE entity IN ('" . getEntity('mutlicurrency') . "')";
-		if ($filter) {
-		  	$sql .= " AND " . $filter;
-		}
+		$sql .= " WHERE entity IN ('" . getEntity('multicurrency') . "')";
+
 		$resql = $this->db->query($sql);
 		if ($resql) {
 		  	while ($obj = $this->db->fetch_object($resql)) {
@@ -1119,7 +1117,6 @@ class ExRatesUpdater extends CommonObject
                   	$datum = $response->datum;
                   	
                   	// Save in the DB
-				    $usr = new User($this->db)->fetch(1); // Fetch SuperAdmin
 				    $currencyRate_static = new CurrencyRate($this->db);
 				    $currency_static = new MultiCurrency($this->db);
 				    $fk_currency = $currency_static->getIdFromCode($this->db, strtoupper($devise['code']));
@@ -1127,7 +1124,13 @@ class ExRatesUpdater extends CommonObject
 				    $currencyRate_static->entity = $conf->entity;
 				    $currencyRate_static->date_sync = strtotime($datum);
 				    $currencyRate_static->rate = $rate;
-				    $result = $currencyRate_static->create($usr, intval($fk_currency));
+				    if ((float) DOL_VERSION >= 20) {
+					    $usr = new User($this->db); 
+					    $usr->fetch(getDolGlobalString('CHTVAEXCHANGERATES_USER'));
+					    $result = $currencyRate_static->create($usr, intval($fk_currency));
+					} else {
+						$result = $currencyRate_static->create(intval($fk_currency));
+					}
               }
            } 
 

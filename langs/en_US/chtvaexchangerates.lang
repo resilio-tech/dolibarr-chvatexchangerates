@@ -18,28 +18,26 @@
 #
 
 # Module label 'ModuleCHTVAExchangeRatesName'
-ModuleCHTVAExchangeRatesName = CHTVAExchangeRates
+ModuleCHTVAExchangeRatesName = Switzerland VAT Act Exchange Rates
 # Module description 'ModuleCHTVAExchangeRatesDesc'
-ModuleCHTVAExchangeRatesDesc = CHTVAExchangeRates description
+ModuleCHTVAExchangeRatesDesc = Module connecting Dolibarr to Switzerland VAT Act Exchange Rates
 
 #
 # Admin page
 #
-CHTVAExchangeRatesSetup = CHTVAExchangeRates setup
+CHTVAExchangeRatesSetup = Switzerland VAT Act Exchange Rates - Setup
 Settings = Settings
-CHTVAExchangeRatesSetupPage = CHTVAExchangeRates setup page
-CHTVAEXCHANGERATES_MYPARAM1 = My param 1
-CHTVAEXCHANGERATES_MYPARAM1Tooltip = My param 1 tooltip
-CHTVAEXCHANGERATES_MYPARAM2=My param 2
-CHTVAEXCHANGERATES_MYPARAM2Tooltip=My param 2 tooltip
+CHTVAExchangeRatesSetupPage = Module CHTVAExchangeRates setup page
+CHTVAEXCHANGERATES_USER = User for currency rate creation
+CHTVAEXCHANGERATES_USERTooltip = User that will be liked to currency creation (only Dolibarr v20+)
 
 
 #
 # About page
 #
 About = About
-CHTVAExchangeRatesAbout = About CHTVAExchangeRates
-CHTVAExchangeRatesAboutPage = CHTVAExchangeRates about page
+CHTVAExchangeRatesAbout = About the module CHTVAExchangeRates (Switzerland VAT Act Exchange Rates)
+CHTVAExchangeRatesAboutPage = Module CHTVAExchangeRates about page
 
 #
 # Sample page

@@ -79,14 +79,7 @@ $scandir = GETPOST('scan_dir', 'alpha');
 $type = 'myobject';
 
 $arrayofparameters = array(
-	'CHTVAEXCHANGERATES_MYPARAM1'=>array('type'=>'string', 'css'=>'minwidth500' ,'enabled'=>1),
-	'CHTVAEXCHANGERATES_MYPARAM2'=>array('type'=>'textarea','enabled'=>1),
-	//'CHTVAEXCHANGERATES_MYPARAM3'=>array('type'=>'category:'.Categorie::TYPE_CUSTOMER, 'enabled'=>1),
-	//'CHTVAEXCHANGERATES_MYPARAM4'=>array('type'=>'emailtemplate:thirdparty', 'enabled'=>1),
-	//'CHTVAEXCHANGERATES_MYPARAM5'=>array('type'=>'yesno', 'enabled'=>1),
-	//'CHTVAEXCHANGERATES_MYPARAM5'=>array('type'=>'thirdparty_type', 'enabled'=>1),
-	//'CHTVAEXCHANGERATES_MYPARAM6'=>array('type'=>'securekey', 'enabled'=>1),
-	//'CHTVAEXCHANGERATES_MYPARAM7'=>array('type'=>'product', 'enabled'=>1),
+	'CHTVAEXCHANGERATES_USER' => array('type'=>'user','enabled'=>1),
 );
 
 $error = 0;
@@ -104,35 +97,8 @@ if ($useFormSetup && (float) DOL_VERSION >= 15) {
 
 	// or use the new system see exemple as follow (or use both because you can ;-) )
 
-	/*
-	// Hôte
-	$item = $formSetup->newItem('NO_PARAM_JUST_TEXT');
-	$item->fieldOverride = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://') . $_SERVER['HTTP_HOST'];
-	$item->cssClass = 'minwidth500';
-
 	// Setup conf CHTVAEXCHANGERATES_MYPARAM1 as a simple string input
-	$item = $formSetup->newItem('CHTVAEXCHANGERATES_MYPARAM1');
-
-	// Setup conf CHTVAEXCHANGERATES_MYPARAM1 as a simple textarea input but we replace the text of field title
-	$item = $formSetup->newItem('CHTVAEXCHANGERATES_MYPARAM2');
-	$item->nameText = $item->getNameText().' more html text ';
-
-	// Setup conf CHTVAEXCHANGERATES_MYPARAM3
-	$item = $formSetup->newItem('CHTVAEXCHANGERATES_MYPARAM3');
-	$item->setAsThirdpartyType();
-
-	// Setup conf CHTVAEXCHANGERATES_MYPARAM4 : exemple of quick define write style
-	$formSetup->newItem('CHTVAEXCHANGERATES_MYPARAM4')->setAsYesNo();
-
-	// Setup conf CHTVAEXCHANGERATES_MYPARAM5
-	$formSetup->newItem('CHTVAEXCHANGERATES_MYPARAM5')->setAsEmailTemplate('thirdparty');
-
-	// Setup conf CHTVAEXCHANGERATES_MYPARAM6
-	$formSetup->newItem('CHTVAEXCHANGERATES_MYPARAM6')->setAsSecureKey()->enabled = 0; // disabled
-
-	// Setup conf CHTVAEXCHANGERATES_MYPARAM7
-	$formSetup->newItem('CHTVAEXCHANGERATES_MYPARAM7')->setAsProduct();
-	*/
+	$item = $formSetup->newItem('CHTVAEXCHANGERATES_USER');
 
 	$setupnotempty = count($formSetup->items);
 }
@@ -356,6 +322,9 @@ if ($action == 'edit') {
 						$selected = (empty($conf->global->$constname) ? '' : $conf->global->$constname);
 						$form->select_produits($selected, $constname, '', 0);
 					}
+				} elseif ($val['type'] == 'user') {
+					$selected = (empty($conf->global->$constname) ? '' : $conf->global->$constname);
+					$form->select_users($selected, $constname, '', 0);
 				} else {
 					print '<input name="'.$constname.'"  class="flat '.(empty($val['css']) ? 'minwidth200' : $val['css']).'" value="'.$conf->global->{$constname}.'">';
 				}
@@ -435,6 +404,14 @@ if ($action == 'edit') {
 						$resprod = $product->fetch($conf->global->{$constname});
 						if ($resprod > 0) {
 							print $product->ref;
+						} elseif ($resprod < 0) {
+							setEventMessages(null, $object->errors, "errors");
+						}
+					} elseif ($val['type'] == 'user') {
+						$usr = new User($db);
+						$resprod = $usr->fetch($conf->global->{$constname});
+						if ($resprod > 0) {
+							print $usr->getNomUrl(1);
 						} elseif ($resprod < 0) {
 							setEventMessages(null, $object->errors, "errors");
 						}
