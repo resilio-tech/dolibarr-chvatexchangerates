@@ -1,0 +1,52 @@
+# Copyright (C) 2022 Resilio SA <amael.parreaux-ey@resilio-solutions.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Generic
+#
+
+# Module label 'ModuleCHTVAExchangeRatesName'
+ModuleCHTVAExchangeRatesName = Taux de change TVA Suisse
+# Module description 'ModuleCHTVAExchangeRatesDesc'
+ModuleCHTVAExchangeRatesDesc = Module connectant Dolibarr aux taux de change de la loi sur la TVA suisse
+
+#
+# Admin page
+#
+CHTVAExchangeRatesSetup = Taux de change TVA Suisse - Configuration
+Settings = Paramètres
+CHTVAExchangeRatesSetupPage = Page de configuration du module CHTVAExchangeRates
+CHTVAEXCHANGERATES_USER = Utilisateur pour la création des taux de change
+CHTVAEXCHANGERATES_USERTooltip = Utilisateur qui sera lié à la création des devises (uniquement Dolibarr v20+)
+
+#
+# About page
+#
+About = À propos
+CHTVAExchangeRatesAbout = À propos du module CHTVAExchangeRates (Taux de change TVA Suisse)
+CHTVAExchangeRatesAboutPage = Page à propos du module CHTVAExchangeRates
+
+#
+# Index page
+#
+CHTVAExchangeRatesArea = Taux de change TVA Suisse
+Setup = Configuration
+
+#
+# Permissions
+#
+Permission302601 = Lire les données des taux de change
+Permission302602 = Créer/Modifier les données des taux de change
+Permission302603 = Supprimer les données des taux de change
