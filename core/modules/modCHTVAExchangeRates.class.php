@@ -72,7 +72,7 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$this->editor_url = 'https://www.resilio-solutions.com';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
@@ -263,23 +263,21 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$this->rights = array();
 		$r = 0;
 		// Add here entries to declare new permissions
-		/* BEGIN MODULEBUILDER PERMISSIONS */
 		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Read objects of CHTVAExchangeRates'; // Permission label
+		$this->rights[$r][1] = 'Permission302601'; // Permission label (translation key)
 		$this->rights[$r][4] = 'exratesupdater';
 		$this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->rights->chtvaexchangerates->exratesupdater->read)
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Create/Update objects of CHTVAExchangeRates'; // Permission label
+		$this->rights[$r][1] = 'Permission302602'; // Permission label (translation key)
 		$this->rights[$r][4] = 'exratesupdater';
 		$this->rights[$r][5] = 'write'; // In php code, permission will be checked by test if ($user->rights->chtvaexchangerates->exratesupdater->write)
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Delete objects of CHTVAExchangeRates'; // Permission label
+		$this->rights[$r][1] = 'Permission302603'; // Permission label (translation key)
 		$this->rights[$r][4] = 'exratesupdater';
 		$this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->rights->chtvaexchangerates->exratesupdater->delete)
 		$r++;
-		/* END MODULEBUILDER PERMISSIONS */
 
 		// Main menu entries to add
 		$this->menu = array();

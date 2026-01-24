@@ -1,4 +1,4 @@
-# Copyright (C) 2022 SuperAdmin <amael.parreaux-ey@resilio-solutions.com>
+# Copyright (C) 2022 Resilio SA <amael.parreaux-ey@resilio-solutions.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,8 +29,7 @@ CHTVAExchangeRatesSetup = Switzerland VAT Act Exchange Rates - Setup
 Settings = Settings
 CHTVAExchangeRatesSetupPage = Module CHTVAExchangeRates setup page
 CHTVAEXCHANGERATES_USER = User for currency rate creation
-CHTVAEXCHANGERATES_USERTooltip = User that will be liked to currency creation (only Dolibarr v20+)
-
+CHTVAEXCHANGERATES_USERTooltip = User that will be linked to currency creation (only Dolibarr v20+)
 
 #
 # About page
@@ -40,12 +39,14 @@ CHTVAExchangeRatesAbout = About the module CHTVAExchangeRates (Switzerland VAT A
 CHTVAExchangeRatesAboutPage = Module CHTVAExchangeRates about page
 
 #
-# Sample page
+# Index page
 #
-MyPageName = My page name
+CHTVAExchangeRatesArea = Switzerland VAT Act Exchange Rates
+Setup = Setup
 
 #
-# Sample widget
+# Permissions
 #
-MyWidget = My widget
-MyWidgetDescription = My widget description
+Permission302601 = Read exchange rates data
+Permission302602 = Create/Update exchange rates data
+Permission302603 = Delete exchange rates data

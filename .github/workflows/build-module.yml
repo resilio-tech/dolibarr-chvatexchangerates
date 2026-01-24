@@ -1,6 +1,8 @@
 name: Build Dolibarr Module
 
 on:
+  release:
+    types: [published]
   push:
     tags:
       - 'v*'
@@ -55,7 +57,8 @@ jobs:
             --exclude='modulebuilder.txt' \
             --exclude='.editorconfig' \
             --exclude='.gitattributes' \
-            --exclude='*.back'
+            --exclude='*.back' \
+            --exclude='TODO.md'
 
           # Create ZIP file
           cd build_tmp
@@ -75,11 +78,10 @@ jobs:
           path: module_chvatexchangerates-${{ steps.version.outputs.version }}.zip
           retention-days: 30
 
-      - name: Create Release
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v1
+      - name: Upload to Release
+        if: github.event_name == 'release' || startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
         with:
           files: module_chvatexchangerates-${{ steps.version.outputs.version }}.zip
-          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
