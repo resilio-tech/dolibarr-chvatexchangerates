@@ -109,13 +109,12 @@ class ExchangeRateParser
 	{
 		$code = isset($devise['code']) ? strtoupper((string) $devise['code']) : null;
 		$kurs = isset($devise->kurs) ? (string) $devise->kurs : null;
+		$units = isset($devise->waehrung) ? (int) (string) $devise->waehrung : 1;
 
-		if (empty($code) || $kurs === null) {
+		if (empty($code) || $kurs === null || $units <= 0) {
 			return null;
 		}
 
-		// Parse kurs (rate) - the API provides CHF per foreign currency
-		// We need to convert to foreign currency per CHF
 		$kursFloat = floatval($kurs);
 		if ($kursFloat <= 0) {
 			return null;
@@ -123,8 +122,9 @@ class ExchangeRateParser
 
 		return array(
 			'code' => $code,
-			'original_rate' => $kursFloat,  // CHF per 1 foreign currency
-			'rate' => 1 / $kursFloat,       // Foreign currency per 1 CHF
+			'units' => $units,
+			'original_rate' => $kursFloat,
+			'rate' => $units / $kursFloat,
 		);
 	}
 
