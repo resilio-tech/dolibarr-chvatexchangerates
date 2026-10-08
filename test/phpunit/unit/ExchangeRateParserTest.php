@@ -284,6 +284,57 @@ class ExchangeRateParserTest extends TestCase
 		$this->assertEquals('EUR', $rates[0]['code']);
 	}
 
+	public function testParseXmlAppliesUnitCount()
+	{
+		$xml = '<?xml version="1.0" encoding="UTF-8"?>
+			<wechselkurse xmlns="https://www.backend-rates.bazg.admin.ch/xmldaily">
+				<datum>08.10.2026</datum>
+				<devise code="eur">
+					<waehrung>1 EUR</waehrung>
+					<kurs>0.94223</kurs>
+				</devise>
+				<devise code="jpy">
+					<waehrung>100 JPY</waehrung>
+					<kurs>0.53271</kurs>
+				</devise>
+				<devise code="huf">
+					<waehrung>1000 HUF</waehrung>
+					<kurs>2.40000</kurs>
+				</devise>
+			</wechselkurse>';
+
+		$this->assertTrue($this->parser->parseXml($xml));
+		$this->assertEquals('2026-10-08', date('Y-m-d', $this->parser->getDateTimestamp()));
+
+		$eur = $this->parser->getRateForCurrency('EUR');
+		$this->assertEquals(1, $eur['units']);
+		$this->assertEqualsWithDelta(1 / 0.94223, $eur['rate'], 0.000001);
+
+		$jpy = $this->parser->getRateForCurrency('JPY');
+		$this->assertEquals(100, $jpy['units']);
+		$this->assertEqualsWithDelta(187.719, $jpy['rate'], 0.001);
+
+		$huf = $this->parser->getRateForCurrency('HUF');
+		$this->assertEquals(1000, $huf['units']);
+		$this->assertEqualsWithDelta(416.667, $huf['rate'], 0.001);
+	}
+
+	public function testParseXmlSkipsInvalidUnitCount()
+	{
+		$xml = '<?xml version="1.0"?>
+			<root>
+				<datum>2024-01-15</datum>
+				<devise code="jpy">
+					<waehrung>JPY</waehrung>
+					<kurs>0.53271</kurs>
+				</devise>
+			</root>';
+
+		$this->parser->parseXml($xml);
+
+		$this->assertEmpty($this->parser->getAllRates());
+	}
+
 	// ========================================
 	// Helper methods
 	// ========================================

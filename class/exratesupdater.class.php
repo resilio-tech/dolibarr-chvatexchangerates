@@ -1080,65 +1080,82 @@ class ExRatesUpdater extends CommonObject
 
 		dol_syslog(__METHOD__, LOG_DEBUG);
 
-		$now = dol_now();
+		if ($conf->currency != 'CHF') {
+			$this->error = 'Company currency is '.$conf->currency.', Swiss VAT exchange rates require CHF';
+			$this->output = $this->error;
+			return -1;
+		}
+
+		include_once DOL_DOCUMENT_ROOT.'/core/lib/geturl.lib.php';
+		require_once __DIR__.'/ExchangeRateParser.class.php';
+
+		// Load from www.backend-rates.bazg.admin.ch/api/xmldaily
+		$url = "https://www.backend-rates.bazg.admin.ch/api/xmldaily";
+		$resget = getURLContent($url, 'GET', '', 1, array(), array('https'), 0, 1);
+		if ($resget['http_code'] != 200 || empty($resget['content'])) {
+			$this->error = 'Failed to download exchange rates from '.$url.' (HTTP '.$resget['http_code'].' '.$resget['curl_error_msg'].')';
+			$this->output = $this->error;
+			return -1;
+		}
+
+		$parser = new ExchangeRateParser();
+		if (!$parser->parseXml($resget['content']) || $parser->getDateTimestamp() === false) {
+			$this->error = 'Failed to parse exchange rates: '.implode(', ', $parser->getErrors());
+			$this->output = $this->error;
+			return -1;
+		}
+
+		// Currencies being used
+		$currency_used = array();
+		$sql = "SELECT code FROM " . $this->db->prefix() . "multicurrency";
+		$sql .= " WHERE entity IN (" . getEntity('multicurrency') . ")";
+
+		$resql = $this->db->query($sql);
+		if (!$resql) {
+			$this->error = $this->db->lasterror();
+			$this->output = $this->error;
+			return -1;
+		}
+		while ($obj = $this->db->fetch_object($resql)) {
+			$currency_used[] = $obj->code;
+		}
+
+		$usr = new User($this->db);
+		$usr->fetch(getDolGlobalString('CHTVAEXCHANGERATES_USER'));
 
 		$this->db->begin();
 
-		// Load from www.backend-rates.bazg.admin.ch/api/xmldaily
-        $url = "https://www.backend-rates.bazg.admin.ch/api/xmldaily";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $xml = curl_exec($ch);
-        curl_close($ch);
-
-        $response = simplexml_load_string($xml);
-
-        // Currencies being used
-        $currency_used = array();
-        $sql = "SELECT code FROM " . $this->db->prefix() . "multicurrency";
-		$sql .= " WHERE entity IN ('" . getEntity('multicurrency') . "')";
-
-		$resql = $this->db->query($sql);
-		if ($resql) {
-		  	while ($obj = $this->db->fetch_object($resql)) {
-		    	$currency_used[strtolower($obj->code)] = strtolower($obj->code);
-		  	}
+		$nbupdated = 0;
+		foreach ($parser->getRatesForCurrencies($currency_used) as $rate) {
+			$currencyRate_static = new CurrencyRate($this->db);
+			$fk_currency = MultiCurrency::getIdFromCode($this->db, $rate['code']);
+			$currencyRate_static->fk_multicurrency = $fk_currency;
+			$currencyRate_static->entity = $conf->entity;
+			$currencyRate_static->date_sync = $parser->getDateTimestamp();
+			$currencyRate_static->rate = $rate['rate'];
+			if ((float) DOL_VERSION >= 20) {
+				$result = $currencyRate_static->create($usr, (int) $fk_currency);
+			} else {
+				$result = $currencyRate_static->create((int) $fk_currency);
+			}
+			if ($result <= 0) {
+				$error++;
+				$this->error = 'Failed to save rate for '.$rate['code'].': '.implode(', ', $currencyRate_static->errors);
+				break;
+			}
+			$nbupdated++;
 		}
-        
-        foreach ($response->devise as $devise)
-           {
-           		// Look for a currency used in Dolibarr
-           	  	if (in_array($devise['code'], $currency_used)) {
-                  	$rate = 1/$devise->kurs;
-                  	$datum = $response->datum;
-                  	
-                  	// Save in the DB
-				    $currencyRate_static = new CurrencyRate($this->db);
-				    $currency_static = new MultiCurrency($this->db);
-				    $fk_currency = $currency_static->getIdFromCode($this->db, strtoupper($devise['code']));
-				    $currencyRate_static->fk_multicurrency = $fk_currency;
-				    $currencyRate_static->entity = $conf->entity;
-				    $currencyRate_static->date_sync = strtotime($datum);
-				    $currencyRate_static->rate = $rate;
-				    if ((float) DOL_VERSION >= 20) {
-					    $usr = new User($this->db); 
-					    $usr->fetch(getDolGlobalString('CHTVAEXCHANGERATES_USER'));
-					    $result = $currencyRate_static->create($usr, intval($fk_currency));
-					} else {
-						$result = $currencyRate_static->create(intval($fk_currency));
-					}
-              }
-           } 
 
-
+		if ($error) {
+			$this->db->rollback();
+			$this->output = $this->error;
+			return -1;
+		}
 
 		$this->db->commit();
+		$this->output = $nbupdated.' exchange rate(s) updated for '.$parser->getDate();
 
-		return $error;
+		return 0;
 	}
 }
 
