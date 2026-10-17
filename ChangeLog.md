@@ -1,5 +1,11 @@
 # CHANGELOG CHVATEXCHANGERATES FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 1.2.0 - 2026-10-17
+
+### Changed
+- The module is named chvatexchangerates everywhere: folder, classes, rights, constants, translations and tables. Remove the old chtvaexchangerates folder before installing it.
+
+
 ## 1.0.1 - Unreleased
 
 ### Changed
