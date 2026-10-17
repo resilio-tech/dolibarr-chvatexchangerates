@@ -17,9 +17,9 @@
  */
 
 /**
- * \file    chtvaexchangerates/admin/setup.php
- * \ingroup chtvaexchangerates
- * \brief   CHTVAExchangeRates setup page.
+ * \file    chvatexchangerates/admin/setup.php
+ * \ingroup chvatexchangerates
+ * \brief   CHVATExchangeRates setup page.
  */
 
 // Load Dolibarr environment
@@ -54,13 +54,13 @@ global $langs, $user;
 
 // Libraries
 require_once DOL_DOCUMENT_ROOT."/core/lib/admin.lib.php";
-require_once '../lib/chtvaexchangerates.lib.php';
+require_once '../lib/chvatexchangerates.lib.php';
 
 // Translations
-$langs->loadLangs(array("admin", "chtvaexchangerates@chtvaexchangerates"));
+$langs->loadLangs(array("admin", "chvatexchangerates@chvatexchangerates"));
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
-$hookmanager->initHooks(array('chtvaexchangeratessetup', 'globalsetup'));
+$hookmanager->initHooks(array('chvatexchangeratessetup', 'globalsetup'));
 
 // Access control
 if (!$user->admin) {
@@ -73,7 +73,7 @@ $backtopage = GETPOST('backtopage', 'alpha');
 $modulepart = GETPOST('modulepart', 'aZ09');	// Used by actions_setmoduleoptions.inc.php
 
 $arrayofparameters = array(
-	'CHTVAEXCHANGERATES_USER' => array('type'=>'user','enabled'=>1),
+	'CHVATEXCHANGERATES_USER' => array('type'=>'user','enabled'=>1),
 );
 
 $error = 0;
@@ -94,7 +94,7 @@ include DOL_DOCUMENT_ROOT.'/core/actions_setmoduleoptions.inc.php';
 $form = new Form($db);
 
 $help_url = '';
-$page_name = "CHTVAExchangeRatesSetup";
+$page_name = "CHVATExchangeRatesSetup";
 
 llxHeader('', $langs->trans($page_name), $help_url);
 
@@ -104,11 +104,11 @@ $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/module
 print load_fiche_titre($langs->trans($page_name), $linkback, 'title_setup');
 
 // Configuration header
-$head = chtvaexchangeratesAdminPrepareHead();
-print dol_get_fiche_head($head, 'settings', $langs->trans($page_name), -1, "chtvaexchangerates@chtvaexchangerates");
+$head = chvatexchangeratesAdminPrepareHead();
+print dol_get_fiche_head($head, 'settings', $langs->trans($page_name), -1, "chvatexchangerates@chvatexchangerates");
 
 // Setup page goes here
-echo '<span class="opacitymedium">'.$langs->trans("CHTVAExchangeRatesSetupPage").'</span><br><br>';
+echo '<span class="opacitymedium">'.$langs->trans("CHVATExchangeRatesSetupPage").'</span><br><br>';
 
 
 if ($action == 'edit') {

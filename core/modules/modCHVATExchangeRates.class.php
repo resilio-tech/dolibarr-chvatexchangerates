@@ -19,19 +19,19 @@
  */
 
 /**
- * 	\defgroup   chtvaexchangerates     Module CHTVAExchangeRates
- *  \brief      CHTVAExchangeRates module descriptor.
+ * 	\defgroup   chvatexchangerates     Module CHVATExchangeRates
+ *  \brief      CHVATExchangeRates module descriptor.
  *
- *  \file       htdocs/chtvaexchangerates/core/modules/modCHTVAExchangeRates.class.php
- *  \ingroup    chtvaexchangerates
- *  \brief      Description and activation file for module CHTVAExchangeRates
+ *  \file       htdocs/chvatexchangerates/core/modules/modCHVATExchangeRates.class.php
+ *  \ingroup    chvatexchangerates
+ *  \brief      Description and activation file for module CHVATExchangeRates
  */
 include_once DOL_DOCUMENT_ROOT.'/core/modules/DolibarrModules.class.php';
 
 /**
- *  Description and activation class for module CHTVAExchangeRates
+ *  Description and activation class for module CHVATExchangeRates
  */
-class modCHTVAExchangeRates extends DolibarrModules
+class modCHVATExchangeRates extends DolibarrModules
 {
 	/**
 	 * Constructor. Define names, constants, directories, boxes, permissions
@@ -45,10 +45,10 @@ class modCHTVAExchangeRates extends DolibarrModules
 
 		// Id for module (must be unique).
 		// Use here a free id (See in Home -> System information -> Dolibarr for list of used modules id).
-		$this->numero = 302650; // TODO Go on page https://wiki.dolibarr.org/index.php/List_of_modules_id to reserve an id number for your module
+		$this->numero = 590000; // TODO Go on page https://wiki.dolibarr.org/index.php/List_of_modules_id to reserve an id number for your module
 
 		// Key text used to identify module (for permissions, menus, etc...)
-		$this->rights_class = 'chtvaexchangerates';
+		$this->rights_class = 'chvatexchangerates';
 
 		// Family can be 'base' (core modules),'crm','financial','hr','projects','products','ecm','technic' (transverse modules),'interface' (link with external tools),'other','...'
 		// It is used to group modules by family in module setup page
@@ -59,10 +59,10 @@ class modCHTVAExchangeRates extends DolibarrModules
 
 		// Gives the possibility for the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
 		//$this->familyinfo = array('myownfamily' => array('position' => '01', 'label' => $langs->trans("MyOwnFamily")));
-		// Module label (no space allowed), used if translation string 'ModuleCHTVAExchangeRatesName' not found (CHTVAExchangeRates is name of module).
+		// Module label (no space allowed), used if translation string 'ModuleCHVATExchangeRatesName' not found (CHVATExchangeRates is name of module).
 		$this->name = preg_replace('/^mod/i', '', get_class($this));
 
-		// Module description, used if translation string 'ModuleCHTVAExchangeRatesDesc' not found (CHTVAExchangeRates is name of module).
+		// Module description, used if translation string 'ModuleCHVATExchangeRatesDesc' not found (CHVATExchangeRates is name of module).
 		$this->description = "This module fetch the official Exchange Rates for TVA in Switzerland.";
 		// Used only if file README.md and README-LL.md not found.
 		$this->descriptionlong = "This module fetch the official Exchange Rates for TVA in Switzerland.";
@@ -72,11 +72,11 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$this->editor_url = 'https://www.resilio-solutions.com';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
-		$this->version = '1.0.0';
+		$this->version = '1.1.0';
 		// Url to the file with your last numberversion of this module
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
-		// Key used in llx_const table to save module status enabled/disabled (where CHTVAEXCHANGERATES is value of property name of module in uppercase)
+		// Key used in llx_const table to save module status enabled/disabled (where CHVATEXCHANGERATES is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 
 		// Name of image file used for this module.
@@ -107,11 +107,11 @@ class modCHTVAExchangeRates extends DolibarrModules
 			'theme' => 0,
 			// Set this to relative path of css file if module has its own css file
 			'css' => array(
-				//    '/chtvaexchangerates/css/chtvaexchangerates.css.php',
+				//    '/chvatexchangerates/css/chvatexchangerates.css.php',
 			),
 			// Set this to relative path of js file if module must load a js on all pages
 			'js' => array(
-				//   '/chtvaexchangerates/js/chtvaexchangerates.js.php',
+				//   '/chvatexchangerates/js/chvatexchangerates.js.php',
 			),
 			// Set here all hooks context managed by module. To find available hook context, make a "grep -r '>initHooks(' *" on source code. You can also set hook context to 'all'
 			'hooks' => array(
@@ -126,11 +126,11 @@ class modCHTVAExchangeRates extends DolibarrModules
 		);
 
 		// Data directories to create when module is enabled.
-		// Example: this->dirs = array("/chtvaexchangerates/temp","/chtvaexchangerates/subdir");
-		$this->dirs = array("/chtvaexchangerates/temp");
+		// Example: this->dirs = array("/chvatexchangerates/temp","/chvatexchangerates/subdir");
+		$this->dirs = array("/chvatexchangerates/temp");
 
-		// Config pages. Put here list of php page, stored into chtvaexchangerates/admin directory, to use to setup module.
-		$this->config_page_url = array("setup.php@chtvaexchangerates");
+		// Config pages. Put here list of php page, stored into chvatexchangerates/admin directory, to use to setup module.
+		$this->config_page_url = array("setup.php@chvatexchangerates");
 
 		// Dependencies
 		// A condition to hide module
@@ -141,7 +141,7 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$this->conflictwith = array(); // List of module class names as string this module is in conflict with. Example: array('modModuleToDisable1', ...)
 
 		// The language file dedicated to your module
-		$this->langfiles = array("chtvaexchangerates@chtvaexchangerates");
+		$this->langfiles = array("chvatexchangerates@chvatexchangerates");
 
 		// Prerequisites
 		$this->phpmin = array(5, 6); // Minimum version of PHP required by module
@@ -150,13 +150,13 @@ class modCHTVAExchangeRates extends DolibarrModules
 		// Messages at activation
 		$this->warnings_activation = array(); // Warning to show when we activate module. array('always'='text') or array('FR'='textfr','MX'='textmx'...)
 		$this->warnings_activation_ext = array(); // Warning to show when we activate an external module. array('always'='text') or array('FR'='textfr','MX'='textmx'...)
-		//$this->automatic_activation = array('FR'=>'CHTVAExchangeRatesWasAutomaticallyActivatedBecauseOfYourCountryChoice');
+		//$this->automatic_activation = array('FR'=>'CHVATExchangeRatesWasAutomaticallyActivatedBecauseOfYourCountryChoice');
 		//$this->always_enabled = true;								// If true, can't be disabled
 
 		// Constants
 		// List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
-		// Example: $this->const=array(1 => array('CHTVAEXCHANGERATES_MYNEWCONST1', 'chaine', 'myvalue', 'This is a constant to add', 1),
-		//                             2 => array('CHTVAEXCHANGERATES_MYNEWCONST2', 'chaine', 'myvalue', 'This is another constant to add', 0, 'current', 1)
+		// Example: $this->const=array(1 => array('CHVATEXCHANGERATES_MYNEWCONST1', 'chaine', 'myvalue', 'This is a constant to add', 1),
+		//                             2 => array('CHVATEXCHANGERATES_MYNEWCONST2', 'chaine', 'myvalue', 'This is another constant to add', 0, 'current', 1)
 		// );
 		$this->const = array();
 
@@ -166,16 +166,16 @@ class modCHTVAExchangeRates extends DolibarrModules
 			'fr_FR:ParentCompany'=>'Maison mère ou revendeur'
 		)*/
 
-		if (!isset($conf->chtvaexchangerates) || !isset($conf->chtvaexchangerates->enabled)) {
-			$conf->chtvaexchangerates = new stdClass();
-			$conf->chtvaexchangerates->enabled = 0;
+		if (!isset($conf->chvatexchangerates) || !isset($conf->chvatexchangerates->enabled)) {
+			$conf->chvatexchangerates = new stdClass();
+			$conf->chvatexchangerates->enabled = 0;
 		}
 
 		// Array to add new pages in new tabs
 		$this->tabs = array();
 		// Example:
-		// $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@chtvaexchangerates:$user->rights->chtvaexchangerates->read:/chtvaexchangerates/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
-		// $this->tabs[] = array('data'=>'objecttype:+tabname2:SUBSTITUTION_Title2:mylangfile@chtvaexchangerates:$user->rights->othermodule->read:/chtvaexchangerates/mynewtab2.php?id=__ID__',  	// To add another new tab identified by code tabname2. Label will be result of calling all substitution functions on 'Title2' key.
+		// $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@chvatexchangerates:$user->rights->chvatexchangerates->read:/chvatexchangerates/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
+		// $this->tabs[] = array('data'=>'objecttype:+tabname2:SUBSTITUTION_Title2:mylangfile@chvatexchangerates:$user->rights->othermodule->read:/chvatexchangerates/mynewtab2.php?id=__ID__',  	// To add another new tab identified by code tabname2. Label will be result of calling all substitution functions on 'Title2' key.
 		// $this->tabs[] = array('data'=>'objecttype:-tabname:NU:conditiontoremove');                                                     										// To remove an existing tab identified by code tabname
 		//
 		// Where objecttype can be
@@ -203,7 +203,7 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$this->dictionaries = array();
 		/* Example:
 		$this->dictionaries=array(
-			'langs'=>'chtvaexchangerates@chtvaexchangerates',
+			'langs'=>'chvatexchangerates@chvatexchangerates',
 			// List of tables we want to see into dictonnary editor
 			'tabname'=>array(MAIN_DB_PREFIX."table1", MAIN_DB_PREFIX."table2", MAIN_DB_PREFIX."table3"),
 			// Label of tables
@@ -221,16 +221,16 @@ class modCHTVAExchangeRates extends DolibarrModules
 			// Name of columns with primary key (try to always name it 'rowid')
 			'tabrowid'=>array("rowid", "rowid", "rowid"),
 			// Condition to show each dictionary
-			'tabcond'=>array($conf->chtvaexchangerates->enabled, $conf->chtvaexchangerates->enabled, $conf->chtvaexchangerates->enabled)
+			'tabcond'=>array($conf->chvatexchangerates->enabled, $conf->chvatexchangerates->enabled, $conf->chvatexchangerates->enabled)
 		);
 		*/
 
 		// Boxes/Widgets
-		// Add here list of php file(s) stored in chtvaexchangerates/core/boxes that contains a class to show a widget.
+		// Add here list of php file(s) stored in chvatexchangerates/core/boxes that contains a class to show a widget.
 		$this->boxes = array(
 			//  0 => array(
-			//      'file' => 'chtvaexchangerateswidget1.php@chtvaexchangerates',
-			//      'note' => 'Widget provided by CHTVAExchangeRates',
+			//      'file' => 'chvatexchangerateswidget1.php@chvatexchangerates',
+			//      'note' => 'Widget provided by CHVATExchangeRates',
 			//      'enabledbydefaulton' => 'Home',
 			//  ),
 			//  ...
@@ -242,7 +242,7 @@ class modCHTVAExchangeRates extends DolibarrModules
 			0 => array(
 			    'label' => 'Sync ExchangeRate',
 			    'jobtype' => 'method',
-			    'class' => '/chtvaexchangerates/class/exratesupdater.class.php',
+			    'class' => '/chvatexchangerates/class/exratesupdater.class.php',
 			    'objectname' => 'ExRatesUpdater',
 			    'method' => 'updateRate',
 			    'parameters' => '',
@@ -250,36 +250,34 @@ class modCHTVAExchangeRates extends DolibarrModules
 			    'frequency' => 1,
 			    'unitfrequency' => 86400,
 			    'status' => 1,
-			    'test' => '$conf->chtvaexchangerates->enabled',
+			    'test' => '$conf->chvatexchangerates->enabled',
 			    'priority' => 50,
 			 ),
 		);
 		// Example: $this->cronjobs=array(
-		//    0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'$conf->chtvaexchangerates->enabled', 'priority'=>50),
-		//    1=>array('label'=>'My label', 'jobtype'=>'command', 'command'=>'', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>1, 'unitfrequency'=>3600*24, 'status'=>0, 'test'=>'$conf->chtvaexchangerates->enabled', 'priority'=>50)
+		//    0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'$conf->chvatexchangerates->enabled', 'priority'=>50),
+		//    1=>array('label'=>'My label', 'jobtype'=>'command', 'command'=>'', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>1, 'unitfrequency'=>3600*24, 'status'=>0, 'test'=>'$conf->chvatexchangerates->enabled', 'priority'=>50)
 		// );
 
 		// Permissions provided by this module
 		$this->rights = array();
 		$r = 0;
 		// Add here entries to declare new permissions
-		/* BEGIN MODULEBUILDER PERMISSIONS */
 		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Read objects of CHTVAExchangeRates'; // Permission label
+		$this->rights[$r][1] = 'Permission302601'; // Permission label (translation key)
 		$this->rights[$r][4] = 'exratesupdater';
-		$this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->rights->chtvaexchangerates->exratesupdater->read)
+		$this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->rights->chvatexchangerates->exratesupdater->read)
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Create/Update objects of CHTVAExchangeRates'; // Permission label
+		$this->rights[$r][1] = 'Permission302602'; // Permission label (translation key)
 		$this->rights[$r][4] = 'exratesupdater';
-		$this->rights[$r][5] = 'write'; // In php code, permission will be checked by test if ($user->rights->chtvaexchangerates->exratesupdater->write)
+		$this->rights[$r][5] = 'write'; // In php code, permission will be checked by test if ($user->rights->chvatexchangerates->exratesupdater->write)
 		$r++;
 		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
-		$this->rights[$r][1] = 'Delete objects of CHTVAExchangeRates'; // Permission label
+		$this->rights[$r][1] = 'Permission302603'; // Permission label (translation key)
 		$this->rights[$r][4] = 'exratesupdater';
-		$this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->rights->chtvaexchangerates->exratesupdater->delete)
+		$this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->rights->chvatexchangerates->exratesupdater->delete)
 		$r++;
-		/* END MODULEBUILDER PERMISSIONS */
 
 		// Main menu entries to add
 		$this->menu = array();
@@ -289,60 +287,60 @@ class modCHTVAExchangeRates extends DolibarrModules
 	/*	$this->menu[$r++] = array(
 			'fk_menu'=>'', // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'top', // This is a Top menu entry
-			'titre'=>'ModuleCHTVAExchangeRatesName',
+			'titre'=>'ModuleCHVATExchangeRatesName',
 			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
-			'mainmenu'=>'chtvaexchangerates',
+			'mainmenu'=>'chvatexchangerates',
 			'leftmenu'=>'',
-			'url'=>'/chtvaexchangerates/chtvaexchangeratesindex.php',
-			'langs'=>'chtvaexchangerates@chtvaexchangerates', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'url'=>'/chvatexchangerates/chvatexchangeratesindex.php',
+			'langs'=>'chvatexchangerates@chvatexchangerates', // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000 + $r,
-			'enabled'=>'$conf->chtvaexchangerates->enabled', // Define condition to show or hide menu entry. Use '$conf->chtvaexchangerates->enabled' if entry must be visible if module is enabled.
-			'perms'=>'1', // Use 'perms'=>'$user->rights->chtvaexchangerates->exratesupdater->read' if you want your menu with a permission rules
+			'enabled'=>'$conf->chvatexchangerates->enabled', // Define condition to show or hide menu entry. Use '$conf->chvatexchangerates->enabled' if entry must be visible if module is enabled.
+			'perms'=>'1', // Use 'perms'=>'$user->rights->chvatexchangerates->exratesupdater->read' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>2, // 0=Menu for internal users, 1=external users, 2=both
 		);*/
 		/* END MODULEBUILDER TOPMENU */
 		/* BEGIN MODULEBUILDER LEFTMENU EXRATESUPDATER
 		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=chtvaexchangerates',      // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'fk_menu'=>'fk_mainmenu=chvatexchangerates',      // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'left',                          // This is a Left menu entry
 			'titre'=>'ExRatesUpdater',
 			'prefix' => img_picto('', $this->picto, 'class="paddingright pictofixedwidth valignmiddle"'),
-			'mainmenu'=>'chtvaexchangerates',
+			'mainmenu'=>'chvatexchangerates',
 			'leftmenu'=>'exratesupdater',
-			'url'=>'/chtvaexchangerates/chtvaexchangeratesindex.php',
-			'langs'=>'chtvaexchangerates@chtvaexchangerates',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'url'=>'/chvatexchangerates/chvatexchangeratesindex.php',
+			'langs'=>'chvatexchangerates@chvatexchangerates',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000+$r,
-			'enabled'=>'$conf->chtvaexchangerates->enabled',  // Define condition to show or hide menu entry. Use '$conf->chtvaexchangerates->enabled' if entry must be visible if module is enabled.
-			'perms'=>'$user->rights->chtvaexchangerates->exratesupdater->read',			                // Use 'perms'=>'$user->rights->chtvaexchangerates->level1->level2' if you want your menu with a permission rules
+			'enabled'=>'$conf->chvatexchangerates->enabled',  // Define condition to show or hide menu entry. Use '$conf->chvatexchangerates->enabled' if entry must be visible if module is enabled.
+			'perms'=>'$user->rights->chvatexchangerates->exratesupdater->read',			                // Use 'perms'=>'$user->rights->chvatexchangerates->level1->level2' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
 		);
 		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=chtvaexchangerates,fk_leftmenu=exratesupdater',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'fk_menu'=>'fk_mainmenu=chvatexchangerates,fk_leftmenu=exratesupdater',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'left',			                // This is a Left menu entry
 			'titre'=>'List_ExRatesUpdater',
-			'mainmenu'=>'chtvaexchangerates',
-			'leftmenu'=>'chtvaexchangerates_exratesupdater_list',
-			'url'=>'/chtvaexchangerates/exratesupdater_list.php',
-			'langs'=>'chtvaexchangerates@chtvaexchangerates',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'mainmenu'=>'chvatexchangerates',
+			'leftmenu'=>'chvatexchangerates_exratesupdater_list',
+			'url'=>'/chvatexchangerates/exratesupdater_list.php',
+			'langs'=>'chvatexchangerates@chvatexchangerates',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000+$r,
-			'enabled'=>'$conf->chtvaexchangerates->enabled',  // Define condition to show or hide menu entry. Use '$conf->chtvaexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-			'perms'=>'$user->rights->chtvaexchangerates->exratesupdater->read',			                // Use 'perms'=>'$user->rights->chtvaexchangerates->level1->level2' if you want your menu with a permission rules
+			'enabled'=>'$conf->chvatexchangerates->enabled',  // Define condition to show or hide menu entry. Use '$conf->chvatexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+			'perms'=>'$user->rights->chvatexchangerates->exratesupdater->read',			                // Use 'perms'=>'$user->rights->chvatexchangerates->level1->level2' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
 		);
 		$this->menu[$r++]=array(
-			'fk_menu'=>'fk_mainmenu=chtvaexchangerates,fk_leftmenu=exratesupdater',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
+			'fk_menu'=>'fk_mainmenu=chvatexchangerates,fk_leftmenu=exratesupdater',	    // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 			'type'=>'left',			                // This is a Left menu entry
 			'titre'=>'New_ExRatesUpdater',
-			'mainmenu'=>'chtvaexchangerates',
-			'leftmenu'=>'chtvaexchangerates_exratesupdater_new',
-			'url'=>'/chtvaexchangerates/exratesupdater_card.php?action=create',
-			'langs'=>'chtvaexchangerates@chtvaexchangerates',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
+			'mainmenu'=>'chvatexchangerates',
+			'leftmenu'=>'chvatexchangerates_exratesupdater_new',
+			'url'=>'/chvatexchangerates/exratesupdater_card.php?action=create',
+			'langs'=>'chvatexchangerates@chvatexchangerates',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>1000+$r,
-			'enabled'=>'$conf->chtvaexchangerates->enabled',  // Define condition to show or hide menu entry. Use '$conf->chtvaexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-			'perms'=>'$user->rights->chtvaexchangerates->exratesupdater->write',			                // Use 'perms'=>'$user->rights->chtvaexchangerates->level1->level2' if you want your menu with a permission rules
+			'enabled'=>'$conf->chvatexchangerates->enabled',  // Define condition to show or hide menu entry. Use '$conf->chvatexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+			'perms'=>'$user->rights->chvatexchangerates->exratesupdater->write',			                // Use 'perms'=>'$user->rights->chvatexchangerates->level1->level2' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>2,				                // 0=Menu for internal users, 1=external users, 2=both
 		);
@@ -350,19 +348,19 @@ class modCHTVAExchangeRates extends DolibarrModules
     /*
         $this->menu[$r++]=array(
             // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-            'fk_menu'=>'fk_mainmenu=chtvaexchangerates',
+            'fk_menu'=>'fk_mainmenu=chvatexchangerates',
             // This is a Left menu entry
             'type'=>'left',
             'titre'=>'List ExRatesUpdater',
-            'mainmenu'=>'chtvaexchangerates',
-            'leftmenu'=>'chtvaexchangerates_exratesupdater',
-            'url'=>'/chtvaexchangerates/exratesupdater_list.php',
+            'mainmenu'=>'chvatexchangerates',
+            'leftmenu'=>'chvatexchangerates_exratesupdater',
+            'url'=>'/chvatexchangerates/exratesupdater_list.php',
             // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-            'langs'=>'chtvaexchangerates@chtvaexchangerates',
+            'langs'=>'chvatexchangerates@chvatexchangerates',
             'position'=>1100+$r,
-            // Define condition to show or hide menu entry. Use '$conf->chtvaexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-            'enabled'=>'$conf->chtvaexchangerates->enabled',
-            // Use 'perms'=>'$user->rights->chtvaexchangerates->level1->level2' if you want your menu with a permission rules
+            // Define condition to show or hide menu entry. Use '$conf->chvatexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+            'enabled'=>'$conf->chvatexchangerates->enabled',
+            // Use 'perms'=>'$user->rights->chvatexchangerates->level1->level2' if you want your menu with a permission rules
             'perms'=>'1',
             'target'=>'',
             // 0=Menu for internal users, 1=external users, 2=both
@@ -370,19 +368,19 @@ class modCHTVAExchangeRates extends DolibarrModules
         );
         $this->menu[$r++]=array(
             // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-            'fk_menu'=>'fk_mainmenu=chtvaexchangerates,fk_leftmenu=chtvaexchangerates_exratesupdater',
+            'fk_menu'=>'fk_mainmenu=chvatexchangerates,fk_leftmenu=chvatexchangerates_exratesupdater',
             // This is a Left menu entry
             'type'=>'left',
             'titre'=>'New ExRatesUpdater',
-            'mainmenu'=>'chtvaexchangerates',
-            'leftmenu'=>'chtvaexchangerates_exratesupdater',
-            'url'=>'/chtvaexchangerates/exratesupdater_card.php?action=create',
+            'mainmenu'=>'chvatexchangerates',
+            'leftmenu'=>'chvatexchangerates_exratesupdater',
+            'url'=>'/chvatexchangerates/exratesupdater_card.php?action=create',
             // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-            'langs'=>'chtvaexchangerates@chtvaexchangerates',
+            'langs'=>'chvatexchangerates@chvatexchangerates',
             'position'=>1100+$r,
-            // Define condition to show or hide menu entry. Use '$conf->chtvaexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-            'enabled'=>'$conf->chtvaexchangerates->enabled',
-            // Use 'perms'=>'$user->rights->chtvaexchangerates->level1->level2' if you want your menu with a permission rules
+            // Define condition to show or hide menu entry. Use '$conf->chvatexchangerates->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
+            'enabled'=>'$conf->chvatexchangerates->enabled',
+            // Use 'perms'=>'$user->rights->chvatexchangerates->level1->level2' if you want your menu with a permission rules
             'perms'=>'1',
             'target'=>'',
             // 0=Menu for internal users, 1=external users, 2=both
@@ -394,20 +392,20 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$r = 1;
 		/* BEGIN MODULEBUILDER EXPORT EXRATESUPDATER */
 		/*
-		$langs->load("chtvaexchangerates@chtvaexchangerates");
+		$langs->load("chvatexchangerates@chvatexchangerates");
 		$this->export_code[$r]=$this->rights_class.'_'.$r;
 		$this->export_label[$r]='ExRatesUpdaterLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
-		$this->export_icon[$r]='exratesupdater@chtvaexchangerates';
+		$this->export_icon[$r]='exratesupdater@chvatexchangerates';
 		// Define $this->export_fields_array, $this->export_TypeFields_array and $this->export_entities_array
-		$keyforclass = 'ExRatesUpdater'; $keyforclassfile='/chtvaexchangerates/class/exratesupdater.class.php'; $keyforelement='exratesupdater@chtvaexchangerates';
+		$keyforclass = 'ExRatesUpdater'; $keyforclassfile='/chvatexchangerates/class/exratesupdater.class.php'; $keyforelement='exratesupdater@chvatexchangerates';
 		include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
 		//$this->export_fields_array[$r]['t.fieldtoadd']='FieldToAdd'; $this->export_TypeFields_array[$r]['t.fieldtoadd']='Text';
 		//unset($this->export_fields_array[$r]['t.fieldtoremove']);
-		//$keyforclass = 'ExRatesUpdaterLine'; $keyforclassfile='/chtvaexchangerates/class/exratesupdater.class.php'; $keyforelement='exratesupdaterline@chtvaexchangerates'; $keyforalias='tl';
+		//$keyforclass = 'ExRatesUpdaterLine'; $keyforclassfile='/chvatexchangerates/class/exratesupdater.class.php'; $keyforelement='exratesupdaterline@chvatexchangerates'; $keyforalias='tl';
 		//include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
-		$keyforselect='exratesupdater'; $keyforaliasextra='extra'; $keyforelement='exratesupdater@chtvaexchangerates';
+		$keyforselect='exratesupdater'; $keyforaliasextra='extra'; $keyforelement='exratesupdater@chvatexchangerates';
 		include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
-		//$keyforselect='exratesupdaterline'; $keyforaliasextra='extraline'; $keyforelement='exratesupdaterline@chtvaexchangerates';
+		//$keyforselect='exratesupdaterline'; $keyforaliasextra='extraline'; $keyforelement='exratesupdaterline@chvatexchangerates';
 		//include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
 		//$this->export_dependencies_array[$r] = array('exratesupdaterline'=>array('tl.rowid','tl.ref')); // To force to activate one or several fields if we select some fields that need same (like to select a unique key if we ask a field of a child to avoid the DISTINCT to discard them, or for computed field than need several other fields)
 		//$this->export_special_array[$r] = array('t.field'=>'...');
@@ -425,13 +423,13 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$r = 1;
 		/* BEGIN MODULEBUILDER IMPORT EXRATESUPDATER */
 		/*
-		 $langs->load("chtvaexchangerates@chtvaexchangerates");
+		 $langs->load("chvatexchangerates@chvatexchangerates");
 		 $this->export_code[$r]=$this->rights_class.'_'.$r;
 		 $this->export_label[$r]='ExRatesUpdaterLines';	// Translation key (used only if key ExportDataset_xxx_z not found)
-		 $this->export_icon[$r]='exratesupdater@chtvaexchangerates';
-		 $keyforclass = 'ExRatesUpdater'; $keyforclassfile='/chtvaexchangerates/class/exratesupdater.class.php'; $keyforelement='exratesupdater@chtvaexchangerates';
+		 $this->export_icon[$r]='exratesupdater@chvatexchangerates';
+		 $keyforclass = 'ExRatesUpdater'; $keyforclassfile='/chvatexchangerates/class/exratesupdater.class.php'; $keyforelement='exratesupdater@chvatexchangerates';
 		 include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
-		 $keyforselect='exratesupdater'; $keyforaliasextra='extra'; $keyforelement='exratesupdater@chtvaexchangerates';
+		 $keyforselect='exratesupdater'; $keyforaliasextra='extra'; $keyforelement='exratesupdater@chvatexchangerates';
 		 include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
 		 //$this->export_dependencies_array[$r]=array('mysubobject'=>'ts.rowid', 't.myfield'=>array('t.myfield2','t.myfield3')); // To force to activate one or several fields if we select some fields that need same (like to select a unique key if we ask a field of a child to avoid the DISTINCT to discard them, or for computed field than need several other fields)
 		 $this->export_sql_start[$r]='SELECT DISTINCT ';
@@ -454,8 +452,8 @@ class modCHTVAExchangeRates extends DolibarrModules
 	{
 		global $conf, $langs;
 
-		//$result = $this->_load_tables('/install/mysql/tables/', 'chtvaexchangerates');
-		$result = $this->_load_tables('/chtvaexchangerates/sql/');
+		//$result = $this->_load_tables('/install/mysql/tables/', 'chvatexchangerates');
+		$result = $this->_load_tables('/chvatexchangerates/sql/');
 		if ($result < 0) {
 			return -1; // Do not activate module if error 'not allowed' returned when loading module SQL queries (the _load_table run sql with run_sql with the error allowed parameter set to 'default')
 		}
@@ -463,11 +461,11 @@ class modCHTVAExchangeRates extends DolibarrModules
 		// Create extrafields during init
 		//include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 		//$extrafields = new ExtraFields($this->db);
-		//$result1=$extrafields->addExtraField('chtvaexchangerates_myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'chtvaexchangerates@chtvaexchangerates', '$conf->chtvaexchangerates->enabled');
-		//$result2=$extrafields->addExtraField('chtvaexchangerates_myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'chtvaexchangerates@chtvaexchangerates', '$conf->chtvaexchangerates->enabled');
-		//$result3=$extrafields->addExtraField('chtvaexchangerates_myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'chtvaexchangerates@chtvaexchangerates', '$conf->chtvaexchangerates->enabled');
-		//$result4=$extrafields->addExtraField('chtvaexchangerates_myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1,'', 0, 0, '', '', 'chtvaexchangerates@chtvaexchangerates', '$conf->chtvaexchangerates->enabled');
-		//$result5=$extrafields->addExtraField('chtvaexchangerates_myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'chtvaexchangerates@chtvaexchangerates', '$conf->chtvaexchangerates->enabled');
+		//$result1=$extrafields->addExtraField('chvatexchangerates_myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'chvatexchangerates@chvatexchangerates', '$conf->chvatexchangerates->enabled');
+		//$result2=$extrafields->addExtraField('chvatexchangerates_myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'chvatexchangerates@chvatexchangerates', '$conf->chvatexchangerates->enabled');
+		//$result3=$extrafields->addExtraField('chvatexchangerates_myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'chvatexchangerates@chvatexchangerates', '$conf->chvatexchangerates->enabled');
+		//$result4=$extrafields->addExtraField('chvatexchangerates_myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1,'', 0, 0, '', '', 'chvatexchangerates@chvatexchangerates', '$conf->chvatexchangerates->enabled');
+		//$result5=$extrafields->addExtraField('chvatexchangerates_myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'chvatexchangerates@chvatexchangerates', '$conf->chvatexchangerates->enabled');
 
 		// Permissions
 		$this->remove($options);
@@ -475,7 +473,7 @@ class modCHTVAExchangeRates extends DolibarrModules
 		$sql = array();
 
 		// Document templates
-		$moduledir = dol_sanitizeFileName('chtvaexchangerates');
+		$moduledir = dol_sanitizeFileName('chvatexchangerates');
 		$myTmpObjects = array();
 		$myTmpObjects['ExRatesUpdater'] = array('includerefgeneration'=>0, 'includedocgeneration'=>0);
 

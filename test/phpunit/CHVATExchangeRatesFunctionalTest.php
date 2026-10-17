@@ -17,8 +17,8 @@
  */
 
 /**
- * \file    test/phpunit/CHTVAExchangeRatesFunctionalTest.php
- * \ingroup chtvaexchangerates
+ * \file    test/phpunit/CHVATExchangeRatesFunctionalTest.php
+ * \ingroup chvatexchangerates
  * \brief   Example Selenium test.
  *
  * Put detailed description here.
@@ -29,7 +29,7 @@ namespace test\functional;
 use PHPUnit_Extensions_Selenium2TestCase_WebDriverException;
 
 /**
- * Class CHTVAExchangeRatesFunctionalTest
+ * Class CHVATExchangeRatesFunctionalTest
  *
  * Requires chromedriver for Google Chrome
  * Requires geckodriver for Mozilla Firefox
@@ -39,9 +39,9 @@ use PHPUnit_Extensions_Selenium2TestCase_WebDriverException;
  * @todo Windows support (IE, Google Chrome, Mozilla Firefox, Safari)
  * @todo OSX support (Safari, Google Chrome, Mozilla Firefox)
  *
- * @package Testchtvaexchangerates
+ * @package Testchvatexchangerates
  */
-class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
+class CHVATExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
 	// TODO: move to a global configuration file?
 	/** @var string Base URL of the webserver under test */
@@ -176,12 +176,12 @@ class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2Test
 		$module_status_image = $this->byXPath($module_status_image_path);
 		if (strstr($module_status_image->attribute('src'), 'switch_off.png')) {
 			// Enable the module
-			$this->byHref('modCHTVAExchangeRates')->click();
+			$this->byHref('modCHVATExchangeRates')->click();
 		} else {
 			// Disable the module
-			$this->byHref('modCHTVAExchangeRates')->click();
+			$this->byHref('modCHVATExchangeRates')->click();
 			// Reenable the module
-			$this->byHref('modCHTVAExchangeRates')->click();
+			$this->byHref('modCHVATExchangeRates')->click();
 		}
 		// Page reloaded, we need a new Xpath
 		$module_status_image = $this->byXPath($module_status_image_path);
@@ -196,9 +196,9 @@ class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2Test
 	 */
 	public function testConfigurationPage()
 	{
-		$this->url('/custom/chtvaexchangerates/admin/setup.php');
+		$this->url('/custom/chvatexchangerates/admin/setup.php');
 		$this->authenticate();
-		return $this->assertContains('chtvaexchangerates/admin/setup.php', $this->url(), 'Configuration page');
+		return $this->assertContains('chvatexchangerates/admin/setup.php', $this->url(), 'Configuration page');
 	}
 
 	/**
@@ -209,9 +209,9 @@ class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2Test
 	 */
 	public function testAboutPage()
 	{
-		$this->url('/custom/chtvaexchangerates/admin/about.php');
+		$this->url('/custom/chvatexchangerates/admin/about.php');
 		$this->authenticate();
-		return $this->assertContains('chtvaexchangerates/admin/about.php', $this->url(), 'About page');
+		return $this->assertContains('chvatexchangerates/admin/about.php', $this->url(), 'About page');
 	}
 
 	/**
@@ -222,7 +222,7 @@ class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2Test
 	 */
 	public function testAboutPageRendersMarkdownReadme()
 	{
-		$this->url('/custom/chtvaexchangerates/admin/about.php');
+		$this->url('/custom/chvatexchangerates/admin/about.php');
 		$this->authenticate();
 		return $this->assertEquals(
 			'Dolibarr Module Template (aka My Module)',
@@ -241,7 +241,7 @@ class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2Test
 	{
 		$this->url('/admin/boxes.php');
 		$this->authenticate();
-		return $this->assertContains('chtvaexchangerateswidget1', $this->source(), "Box enabled");
+		return $this->assertContains('chvatexchangerateswidget1', $this->source(), "Box enabled");
 	}
 
 	/**
@@ -255,7 +255,7 @@ class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2Test
 		$this->url('/admin/triggers.php');
 		$this->authenticate();
 		return $this->assertContains(
-			'interface_99_modCHTVAExchangeRates_CHTVAExchangeRatesTriggers.class.php',
+			'interface_99_modCHVATExchangeRates_CHVATExchangeRatesTriggers.class.php',
 			$this->byTag('body')->text(),
 			"Trigger declared"
 		);
@@ -273,7 +273,7 @@ class CHTVAExchangeRatesFunctionalTest extends \PHPUnit_Extensions_Selenium2Test
 		$this->authenticate();
 		return $this->assertContains(
 			'tick.png',
-			$this->byXPath('//td[text()="interface_99_modCHTVAExchangeRates_MyTrigger.class.php"]/following::img')->attribute('src'),
+			$this->byXPath('//td[text()="interface_99_modCHVATExchangeRates_MyTrigger.class.php"]/following::img')->attribute('src'),
 			"Trigger enabled"
 		);
 	}

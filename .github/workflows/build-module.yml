@@ -31,7 +31,7 @@ jobs:
             VERSION="${VERSION#v}"
           else
             # Extract version from module descriptor
-            VERSION=$(grep -oP "\\\$this->version\s*=\s*'\K[^']+" core/modules/modCHTVAExchangeRates.class.php)
+            VERSION=$(grep -oP "\\\$this->version\s*=\s*'\K[^']+" core/modules/modCHVATExchangeRates.class.php)
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Module version: $VERSION"

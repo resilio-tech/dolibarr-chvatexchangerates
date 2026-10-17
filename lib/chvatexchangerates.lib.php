@@ -16,9 +16,9 @@
  */
 
 /**
- * \file    chtvaexchangerates/lib/chtvaexchangerates.lib.php
- * \ingroup chtvaexchangerates
- * \brief   Library files with common functions for CHTVAExchangeRates
+ * \file    chvatexchangerates/lib/chvatexchangerates.lib.php
+ * \ingroup chvatexchangerates
+ * \brief   Library files with common functions for CHVATExchangeRates
  */
 
 /**
@@ -26,28 +26,28 @@
  *
  * @return array
  */
-function chtvaexchangeratesAdminPrepareHead()
+function chvatexchangeratesAdminPrepareHead()
 {
 	global $langs, $conf;
 
-	$langs->load("chtvaexchangerates@chtvaexchangerates");
+	$langs->load("chvatexchangerates@chvatexchangerates");
 
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/chtvaexchangerates/admin/setup.php", 1);
+	$head[$h][0] = dol_buildpath("/chvatexchangerates/admin/setup.php", 1);
 	$head[$h][1] = $langs->trans("Settings");
 	$head[$h][2] = 'settings';
 	$h++;
 
 	/*
-	$head[$h][0] = dol_buildpath("/chtvaexchangerates/admin/myobject_extrafields.php", 1);
+	$head[$h][0] = dol_buildpath("/chvatexchangerates/admin/myobject_extrafields.php", 1);
 	$head[$h][1] = $langs->trans("ExtraFields");
 	$head[$h][2] = 'myobject_extrafields';
 	$h++;
 	*/
 
-	$head[$h][0] = dol_buildpath("/chtvaexchangerates/admin/about.php", 1);
+	$head[$h][0] = dol_buildpath("/chvatexchangerates/admin/about.php", 1);
 	$head[$h][1] = $langs->trans("About");
 	$head[$h][2] = 'about';
 	$h++;
@@ -55,14 +55,14 @@ function chtvaexchangeratesAdminPrepareHead()
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
 	//$this->tabs = array(
-	//	'entity:+tabname:Title:@chtvaexchangerates:/chtvaexchangerates/mypage.php?id=__ID__'
+	//	'entity:+tabname:Title:@chvatexchangerates:/chvatexchangerates/mypage.php?id=__ID__'
 	//); // to add new tab
 	//$this->tabs = array(
-	//	'entity:-tabname:Title:@chtvaexchangerates:/chtvaexchangerates/mypage.php?id=__ID__'
+	//	'entity:-tabname:Title:@chvatexchangerates:/chvatexchangerates/mypage.php?id=__ID__'
 	//); // to remove a tab
-	complete_head_from_modules($conf, $langs, null, $head, $h, 'chtvaexchangerates@chtvaexchangerates');
+	complete_head_from_modules($conf, $langs, null, $head, $h, 'chvatexchangerates@chvatexchangerates');
 
-	complete_head_from_modules($conf, $langs, null, $head, $h, 'chtvaexchangerates@chtvaexchangerates', 'remove');
+	complete_head_from_modules($conf, $langs, null, $head, $h, 'chvatexchangerates@chvatexchangerates', 'remove');
 
 	return $head;
 }

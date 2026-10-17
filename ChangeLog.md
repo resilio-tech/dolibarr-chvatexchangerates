@@ -1,4 +1,4 @@
-# CHANGELOG CHTVAEXCHANGERATES FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+# CHANGELOG CHVATEXCHANGERATES FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 1.0.1 - Unreleased
 

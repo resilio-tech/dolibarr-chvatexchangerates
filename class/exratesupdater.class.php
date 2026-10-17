@@ -18,7 +18,7 @@
 
 /**
  * \file        class/exratesupdater.class.php
- * \ingroup     chtvaexchangerates
+ * \ingroup     chvatexchangerates
  * \brief       This file is a CRUD class file for ExRatesUpdater (Create/Read/Update/Delete)
  */
 
@@ -35,7 +35,7 @@ class ExRatesUpdater extends CommonObject
 	/**
 	 * @var string ID of module.
 	 */
-	public $module = 'chtvaexchangerates';
+	public $module = 'chvatexchangerates';
 
 	/**
 	 * @var string ID to identify managed object.
@@ -45,7 +45,7 @@ class ExRatesUpdater extends CommonObject
 	/**
 	 * @var string Name of table without prefix where object is stored. This is also the key used for extrafields management.
 	 */
-	public $table_element = 'chtvaexchangerates_exratesupdater';
+	public $table_element = 'chvatexchangerates_exratesupdater';
 
 	/**
 	 * @var int  Does this object support multicompany module ?
@@ -61,7 +61,7 @@ class ExRatesUpdater extends CommonObject
 	/**
 	 * @var string String with name of icon for exratesupdater. Must be the part after the 'object_' into object_exratesupdater.png
 	 */
-	public $picto = 'exratesupdater@chtvaexchangerates';
+	public $picto = 'exratesupdater@chvatexchangerates';
 
 
 	const STATUS_DRAFT = 0;
@@ -147,7 +147,7 @@ class ExRatesUpdater extends CommonObject
 	// /**
 	//  * @var string    Name of subtable line
 	//  */
-	// public $table_element_line = 'chtvaexchangerates_exratesupdaterline';
+	// public $table_element_line = 'chvatexchangerates_exratesupdaterline';
 
 	// /**
 	//  * @var string    Field with ID of parent key if this object has a parent
@@ -169,7 +169,7 @@ class ExRatesUpdater extends CommonObject
 	//  *               If name matches '@ClassNAme:FilePathClass;ParentFkFieldName' it will
 	//  *               call method deleteByParentField(parentId, ParentFkFieldName) to fetch and delete child object
 	//  */
-	// protected $childtablesoncascade = array('chtvaexchangerates_exratesupdaterdet');
+	// protected $childtablesoncascade = array('chvatexchangerates_exratesupdaterdet');
 
 	// /**
 	//  * @var ExRatesUpdaterLine[]     Array of subtable lines
@@ -197,7 +197,7 @@ class ExRatesUpdater extends CommonObject
 		}
 
 		// Example to show how to set values of fields definition dynamically
-		/*if ($user->rights->chtvaexchangerates->exratesupdater->read) {
+		/*if ($user->rights->chvatexchangerates->exratesupdater->read) {
 			$this->fields['myfield']['visible'] = 1;
 			$this->fields['myfield']['noteditable'] = 0;
 		}*/
@@ -511,8 +511,8 @@ class ExRatesUpdater extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->exratesupdater->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->exratesupdater->exratesupdater_advance->validate))))
+		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->exratesupdater->write))
+		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->exratesupdater->exratesupdater_advance->validate))))
 		 {
 		 $this->error='NotEnoughPermissions';
 		 dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
@@ -578,15 +578,15 @@ class ExRatesUpdater extends CommonObject
 				// We rename directory ($this->ref = old ref, $num = new ref) in order not to lose the attachments
 				$oldref = dol_sanitizeFileName($this->ref);
 				$newref = dol_sanitizeFileName($num);
-				$dirsource = $conf->chtvaexchangerates->dir_output.'/exratesupdater/'.$oldref;
-				$dirdest = $conf->chtvaexchangerates->dir_output.'/exratesupdater/'.$newref;
+				$dirsource = $conf->chvatexchangerates->dir_output.'/exratesupdater/'.$oldref;
+				$dirdest = $conf->chvatexchangerates->dir_output.'/exratesupdater/'.$newref;
 				if (!$error && file_exists($dirsource)) {
 					dol_syslog(get_class($this)."::validate() rename dir ".$dirsource." into ".$dirdest);
 
 					if (@rename($dirsource, $dirdest)) {
 						dol_syslog("Rename ok");
 						// Rename docs starting with $oldref with $newref
-						$listoffiles = dol_dir_list($conf->chtvaexchangerates->dir_output.'/exratesupdater/'.$newref, 'files', 1, '^'.preg_quote($oldref, '/'));
+						$listoffiles = dol_dir_list($conf->chvatexchangerates->dir_output.'/exratesupdater/'.$newref, 'files', 1, '^'.preg_quote($oldref, '/'));
 						foreach ($listoffiles as $fileentry) {
 							$dirsource = $fileentry['name'];
 							$dirdest = preg_replace('/^'.preg_quote($oldref, '/').'/', $newref, $dirsource);
@@ -629,8 +629,8 @@ class ExRatesUpdater extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->chtvaexchangerates_advance->validate))))
+		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->write))
+		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->chvatexchangerates_advance->validate))))
 		 {
 		 $this->error='Permission denied';
 		 return -1;
@@ -653,8 +653,8 @@ class ExRatesUpdater extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->chtvaexchangerates_advance->validate))))
+		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->write))
+		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->chvatexchangerates_advance->validate))))
 		 {
 		 $this->error='Permission denied';
 		 return -1;
@@ -677,8 +677,8 @@ class ExRatesUpdater extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chtvaexchangerates->chtvaexchangerates_advance->validate))))
+		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->write))
+		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->chvatexchangerates->chvatexchangerates_advance->validate))))
 		 {
 		 $this->error='Permission denied';
 		 return -1;
@@ -714,7 +714,7 @@ class ExRatesUpdater extends CommonObject
 		$label .= '<br>';
 		$label .= '<b>'.$langs->trans('Ref').':</b> '.$this->ref;
 
-		$url = dol_buildpath('/chtvaexchangerates/exratesupdater_card.php', 1).'?id='.$this->id;
+		$url = dol_buildpath('/chvatexchangerates/exratesupdater_card.php', 1).'?id='.$this->id;
 
 		if ($option != 'nolink') {
 			// Add param to save lastsearch_values or not
@@ -837,7 +837,7 @@ class ExRatesUpdater extends CommonObject
 		// phpcs:enable
 		if (empty($this->labelStatus) || empty($this->labelStatusShort)) {
 			global $langs;
-			//$langs->load("chtvaexchangerates@chtvaexchangerates");
+			//$langs->load("chvatexchangerates@chvatexchangerates");
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->transnoentitiesnoconv('Draft');
 			$this->labelStatus[self::STATUS_VALIDATED] = $langs->transnoentitiesnoconv('Enabled');
 			$this->labelStatus[self::STATUS_CANCELED] = $langs->transnoentitiesnoconv('Disabled');
@@ -947,22 +947,22 @@ class ExRatesUpdater extends CommonObject
 	public function getNextNumRef()
 	{
 		global $langs, $conf;
-		$langs->load("chtvaexchangerates@chtvaexchangerates");
+		$langs->load("chvatexchangerates@chvatexchangerates");
 
-		if (empty($conf->global->CHTVAEXCHANGERATES_EXRATESUPDATER_ADDON)) {
-			$conf->global->CHTVAEXCHANGERATES_EXRATESUPDATER_ADDON = 'mod_exratesupdater_standard';
+		if (empty($conf->global->CHVATEXCHANGERATES_EXRATESUPDATER_ADDON)) {
+			$conf->global->CHVATEXCHANGERATES_EXRATESUPDATER_ADDON = 'mod_exratesupdater_standard';
 		}
 
-		if (!empty($conf->global->CHTVAEXCHANGERATES_EXRATESUPDATER_ADDON)) {
+		if (!empty($conf->global->CHVATEXCHANGERATES_EXRATESUPDATER_ADDON)) {
 			$mybool = false;
 
-			$file = $conf->global->CHTVAEXCHANGERATES_EXRATESUPDATER_ADDON.".php";
-			$classname = $conf->global->CHTVAEXCHANGERATES_EXRATESUPDATER_ADDON;
+			$file = $conf->global->CHVATEXCHANGERATES_EXRATESUPDATER_ADDON.".php";
+			$classname = $conf->global->CHVATEXCHANGERATES_EXRATESUPDATER_ADDON;
 
 			// Include file with class
 			$dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
 			foreach ($dirmodels as $reldir) {
-				$dir = dol_buildpath($reldir."core/modules/chtvaexchangerates/");
+				$dir = dol_buildpath($reldir."core/modules/chvatexchangerates/");
 
 				// Load file with numbering class (if found)
 				$mybool |= @include_once $dir.$file;
@@ -1012,7 +1012,7 @@ class ExRatesUpdater extends CommonObject
 		$result = 0;
 		$includedocgeneration = 0;
 
-		$langs->load("chtvaexchangerates@chtvaexchangerates");
+		$langs->load("chvatexchangerates@chvatexchangerates");
 
 		if (!dol_strlen($modele)) {
 			$modele = 'standard_exratesupdater';
@@ -1024,7 +1024,7 @@ class ExRatesUpdater extends CommonObject
 			}
 		}
 
-		$modelpath = "core/modules/chtvaexchangerates/doc/";
+		$modelpath = "core/modules/chvatexchangerates/doc/";
 
 		if ($includedocgeneration && !empty($modele)) {
 			$result = $this->commonGenerateDocument($modelpath, $modele, $outputlangs, $hidedetails, $hidedesc, $hideref, $moreparams);
@@ -1121,7 +1121,7 @@ class ExRatesUpdater extends CommonObject
 		}
 
 		$usr = new User($this->db);
-		$usr->fetch(getDolGlobalString('CHTVAEXCHANGERATES_USER'));
+		$usr->fetch(getDolGlobalString('CHVATEXCHANGERATES_USER'));
 
 		$this->db->begin();
 

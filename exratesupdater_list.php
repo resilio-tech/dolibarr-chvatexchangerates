@@ -18,7 +18,7 @@
 
 /**
  *   	\file       exratesupdater_list.php
- *		\ingroup    chtvaexchangerates
+ *		\ingroup    chvatexchangerates
  *		\brief      List page for exratesupdater
  */
 
@@ -79,14 +79,14 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/html.formcompany.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
 
-// load chtvaexchangerates libraries
+// load chvatexchangerates libraries
 require_once __DIR__.'/class/exratesupdater.class.php';
 
 // for other modules
 //dol_include_once('/othermodule/class/otherobject.class.php');
 
 // Load translation files required by the page
-$langs->loadLangs(array("chtvaexchangerates@chtvaexchangerates", "other"));
+$langs->loadLangs(array("chvatexchangerates@chvatexchangerates", "other"));
 
 $action     = GETPOST('action', 'aZ09') ?GETPOST('action', 'aZ09') : 'view'; // The action 'add', 'create', 'edit', 'update', 'view', ...
 $massaction = GETPOST('massaction', 'alpha'); // The bulk action (combo box choice into lists)
@@ -116,7 +116,7 @@ $pagenext = $page + 1;
 // Initialize technical objects
 $object = new ExRatesUpdater($db);
 $extrafields = new ExtraFields($db);
-$diroutputmassaction = $conf->chtvaexchangerates->dir_output.'/temp/massgeneration/'.$user->id;
+$diroutputmassaction = $conf->chvatexchangerates->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array('exratesupdaterlist')); // Note that conf->hooks_modules contains array
 
 // Fetch optionals attributes and labels
@@ -180,9 +180,9 @@ $arrayfields = dol_sort_array($arrayfields, 'position');
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
 $enablepermissioncheck = 0;
 if ($enablepermissioncheck) {
-	$permissiontoread = $user->rights->chtvaexchangerates->exratesupdater->read;
-	$permissiontoadd = $user->rights->chtvaexchangerates->exratesupdater->write;
-	$permissiontodelete = $user->rights->chtvaexchangerates->exratesupdater->delete;
+	$permissiontoread = $user->rights->chvatexchangerates->exratesupdater->read;
+	$permissiontoadd = $user->rights->chvatexchangerates->exratesupdater->write;
+	$permissiontodelete = $user->rights->chvatexchangerates->exratesupdater->delete;
 } else {
 	$permissiontoread = 1;
 	$permissiontoadd = 1;
@@ -195,7 +195,7 @@ if ($user->socid > 0) accessforbidden();
 //$socid = 0; if ($user->socid > 0) $socid = $user->socid;
 //$isdraft = (($object->status == $object::STATUS_DRAFT) ? 1 : 0);
 //restrictedArea($user, $object->element, $object->id, $object->table_element, '', 'fk_soc', 'rowid', $isdraft);
-if (empty($conf->chtvaexchangerates->enabled)) accessforbidden('Moule not enabled');
+if (empty($conf->chvatexchangerates->enabled)) accessforbidden('Moule not enabled');
 if (!$permissiontoread) accessforbidden();
 
 
@@ -242,7 +242,7 @@ if (empty($reshook)) {
 	// Mass actions
 	$objectclass = 'ExRatesUpdater';
 	$objectlabel = 'ExRatesUpdater';
-	$uploaddir = $conf->chtvaexchangerates->dir_output;
+	$uploaddir = $conf->chvatexchangerates->dir_output;
 	include DOL_DOCUMENT_ROOT.'/core/actions_massactions.inc.php';
 }
 
@@ -399,7 +399,7 @@ $num = $db->num_rows($resql);
 if ($num == 1 && !empty($conf->global->MAIN_SEARCH_DIRECT_OPEN_IF_ONLY_ONE) && $search_all && !$page) {
 	$obj = $db->fetch_object($resql);
 	$id = $obj->rowid;
-	header("Location: ".dol_buildpath('/chtvaexchangerates/exratesupdater_card.php', 1).'?id='.$id);
+	header("Location: ".dol_buildpath('/chvatexchangerates/exratesupdater_card.php', 1).'?id='.$id);
 	exit;
 }
 
@@ -481,7 +481,7 @@ print '<input type="hidden" name="sortorder" value="'.$sortorder.'">';
 print '<input type="hidden" name="page" value="'.$page.'">';
 print '<input type="hidden" name="contextpage" value="'.$contextpage.'">';
 
-$newcardbutton = dolGetButtonTitle($langs->trans('New'), '', 'fa fa-plus-circle', dol_buildpath('/chtvaexchangerates/exratesupdater_card.php', 1).'?action=create&backtopage='.urlencode($_SERVER['PHP_SELF']), '', $permissiontoadd);
+$newcardbutton = dolGetButtonTitle($langs->trans('New'), '', 'fa fa-plus-circle', dol_buildpath('/chvatexchangerates/exratesupdater_card.php', 1).'?action=create&backtopage='.urlencode($_SERVER['PHP_SELF']), '', $permissiontoadd);
 
 print_barre_liste($title, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, $massactionbutton, $num, $nbtotalofrecords, 'object_'.$object->picto, 0, $newcardbutton, '', $limit, 0, 0, 1);
 
@@ -748,7 +748,7 @@ if (in_array('builddoc', $arrayofmassactions) && ($nbtotalofrecords === '' || $n
 	$genallowed = $permissiontoread;
 	$delallowed = $permissiontoadd;
 
-	print $formfile->showdocuments('massfilesarea_chtvaexchangerates', '', $filedir, $urlsource, 0, $delallowed, '', 1, 1, 0, 48, 1, $param, $title, '', '', '', null, $hidegeneratedfilelistifempty);
+	print $formfile->showdocuments('massfilesarea_chvatexchangerates', '', $filedir, $urlsource, 0, $delallowed, '', 1, 1, 0, 48, 1, $param, $title, '', '', '', null, $hidegeneratedfilelistifempty);
 }
 
 // End of page

@@ -22,7 +22,7 @@
 
 /**
  *      \file       admin/exratesupdater_extrafields.php
- *		\ingroup    chtvaexchangerates
+ *		\ingroup    chvatexchangerates
  *		\brief      Page to setup extra fields of exratesupdater
  */
 
@@ -55,10 +55,10 @@ if (!$res) {
 }
 
 require_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
-require_once '../lib/chtvaexchangerates.lib.php';
+require_once '../lib/chvatexchangerates.lib.php';
 
 // Load translation files required by the page
-$langs->loadLangs(array('chtvaexchangerates@chtvaexchangerates', 'admin'));
+$langs->loadLangs(array('chvatexchangerates@chvatexchangerates', 'admin'));
 
 $extrafields = new ExtraFields($db);
 $form = new Form($db);
@@ -72,7 +72,7 @@ foreach ($tmptype2label as $key => $val) {
 
 $action = GETPOST('action', 'aZ09');
 $attrname = GETPOST('attrname', 'alpha');
-$elementtype = 'chtvaexchangerates_exratesupdater'; //Must be the $table_element of the class that manage extrafield
+$elementtype = 'chvatexchangerates_exratesupdater'; //Must be the $table_element of the class that manage extrafield
 
 if (!$user->admin) {
 	accessforbidden();
@@ -92,18 +92,18 @@ require DOL_DOCUMENT_ROOT.'/core/actions_extrafields.inc.php';
  */
 
 $help_url = '';
-$page_name = "CHTVAExchangeRatesSetup";
+$page_name = "CHVATExchangeRatesSetup";
 
-llxHeader('', $langs->trans("CHTVAExchangeRatesSetup"), $help_url);
+llxHeader('', $langs->trans("CHVATExchangeRatesSetup"), $help_url);
 
 
 $linkback = '<a href="'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans("BackToModuleList").'</a>';
 print load_fiche_titre($langs->trans($page_name), $linkback, 'title_setup');
 
 
-$head = chtvaexchangeratesAdminPrepareHead();
+$head = chvatexchangeratesAdminPrepareHead();
 
-print dol_get_fiche_head($head, 'exratesupdater_extrafields', $langs->trans($page_name), -1, 'chtvaexchangerates@chtvaexchangerates');
+print dol_get_fiche_head($head, 'exratesupdater_extrafields', $langs->trans($page_name), -1, 'chvatexchangerates@chvatexchangerates');
 
 require DOL_DOCUMENT_ROOT.'/core/tpl/admin_extrafields_view.tpl.php';
 

@@ -18,11 +18,11 @@
  */
 
 /**
- *  \file       htdocs/core/modules/chtvaexchangerates/mod_exratesupdater_standard.php
- *  \ingroup    chtvaexchangerates
+ *  \file       htdocs/core/modules/chvatexchangerates/mod_exratesupdater_standard.php
+ *  \ingroup    chvatexchangerates
  *  \brief      File of class to manage ExRatesUpdater numbering rules standard
  */
-dol_include_once('/chtvaexchangerates/core/modules/chtvaexchangerates/modules_exratesupdater.php');
+dol_include_once('/chvatexchangerates/core/modules/chvatexchangerates/modules_exratesupdater.php');
 
 
 /**
@@ -87,7 +87,7 @@ class mod_exratesupdater_standard extends ModeleNumRefExRatesUpdater
 
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
-		$sql .= " FROM ".MAIN_DB_PREFIX."chtvaexchangerates_exratesupdater";
+		$sql .= " FROM ".MAIN_DB_PREFIX."chvatexchangerates_exratesupdater";
 		$sql .= " WHERE ref LIKE '".$db->escape($this->prefix)."____-%'";
 		if ($object->ismultientitymanaged == 1) {
 			$sql .= " AND entity = ".$conf->entity;
@@ -124,7 +124,7 @@ class mod_exratesupdater_standard extends ModeleNumRefExRatesUpdater
 		// first we get the max value
 		$posindice = strlen($this->prefix) + 6;
 		$sql = "SELECT MAX(CAST(SUBSTRING(ref FROM ".$posindice.") AS SIGNED)) as max";
-		$sql .= " FROM ".MAIN_DB_PREFIX."chtvaexchangerates_exratesupdater";
+		$sql .= " FROM ".MAIN_DB_PREFIX."chvatexchangerates_exratesupdater";
 		$sql .= " WHERE ref LIKE '".$db->escape($this->prefix)."____-%'";
 		if ($object->ismultientitymanaged == 1) {
 			$sql .= " AND entity = ".$conf->entity;

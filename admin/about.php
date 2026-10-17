@@ -17,9 +17,9 @@
  */
 
 /**
- * \file    chtvaexchangerates/admin/about.php
- * \ingroup chtvaexchangerates
- * \brief   About page of module CHTVAExchangeRates.
+ * \file    chvatexchangerates/admin/about.php
+ * \ingroup chvatexchangerates
+ * \brief   About page of module CHVATExchangeRates.
  */
 
 // Load Dolibarr environment
@@ -53,10 +53,10 @@ if (!$res) {
 // Libraries
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
-require_once '../lib/chtvaexchangerates.lib.php';
+require_once '../lib/chvatexchangerates.lib.php';
 
 // Translations
-$langs->loadLangs(array("errors", "admin", "chtvaexchangerates@chtvaexchangerates"));
+$langs->loadLangs(array("errors", "admin", "chvatexchangerates@chvatexchangerates"));
 
 // Access control
 if (!$user->admin) {
@@ -82,7 +82,7 @@ $backtopage = GETPOST('backtopage', 'alpha');
 $form = new Form($db);
 
 $help_url = '';
-$page_name = "CHTVAExchangeRatesAbout";
+$page_name = "CHVATExchangeRatesAbout";
 
 llxHeader('', $langs->trans($page_name), $help_url);
 
@@ -92,11 +92,11 @@ $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/module
 print load_fiche_titre($langs->trans($page_name), $linkback, 'title_setup');
 
 // Configuration header
-$head = chtvaexchangeratesAdminPrepareHead();
-print dol_get_fiche_head($head, 'about', $langs->trans($page_name), 0, 'chtvaexchangerates@chtvaexchangerates');
+$head = chvatexchangeratesAdminPrepareHead();
+print dol_get_fiche_head($head, 'about', $langs->trans($page_name), 0, 'chvatexchangerates@chvatexchangerates');
 
-dol_include_once('/chtvaexchangerates/core/modules/modCHTVAExchangeRates.class.php');
-$tmpmodule = new modCHTVAExchangeRates($db);
+dol_include_once('/chvatexchangerates/core/modules/modCHVATExchangeRates.class.php');
+$tmpmodule = new modCHVATExchangeRates($db);
 print $tmpmodule->getDescLong();
 
 // Page end
