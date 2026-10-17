@@ -16,8 +16,8 @@
  */
 
 /**
- * \file    lib/chtvaexchangerates_exratesupdater.lib.php
- * \ingroup chtvaexchangerates
+ * \file    lib/chvatexchangerates_exratesupdater.lib.php
+ * \ingroup chvatexchangerates
  * \brief   Library files with common functions for ExRatesUpdater
  */
 
@@ -31,12 +31,12 @@ function exratesupdaterPrepareHead($object)
 {
 	global $db, $langs, $conf;
 
-	$langs->load("chtvaexchangerates@chtvaexchangerates");
+	$langs->load("chvatexchangerates@chvatexchangerates");
 
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/chtvaexchangerates/exratesupdater_card.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/chvatexchangerates/exratesupdater_card.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans("Card");
 	$head[$h][2] = 'card';
 	$h++;
@@ -49,7 +49,7 @@ function exratesupdaterPrepareHead($object)
 		if (!empty($object->note_public)) {
 			$nbNote++;
 		}
-		$head[$h][0] = dol_buildpath('/chtvaexchangerates/exratesupdater_note.php', 1).'?id='.$object->id;
+		$head[$h][0] = dol_buildpath('/chvatexchangerates/exratesupdater_note.php', 1).'?id='.$object->id;
 		$head[$h][1] = $langs->trans('Notes');
 		if ($nbNote > 0) {
 			$head[$h][1] .= (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER) ? '<span class="badge marginleftonlyshort">'.$nbNote.'</span>' : '');
@@ -60,10 +60,10 @@ function exratesupdaterPrepareHead($object)
 
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 	require_once DOL_DOCUMENT_ROOT.'/core/class/link.class.php';
-	$upload_dir = $conf->chtvaexchangerates->dir_output."/exratesupdater/".dol_sanitizeFileName($object->ref);
+	$upload_dir = $conf->chvatexchangerates->dir_output."/exratesupdater/".dol_sanitizeFileName($object->ref);
 	$nbFiles = count(dol_dir_list($upload_dir, 'files', 0, '', '(\.meta|_preview.*\.png)$'));
 	$nbLinks = Link::count($db, $object->element, $object->id);
-	$head[$h][0] = dol_buildpath("/chtvaexchangerates/exratesupdater_document.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/chvatexchangerates/exratesupdater_document.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans('Documents');
 	if (($nbFiles + $nbLinks) > 0) {
 		$head[$h][1] .= '<span class="badge marginleftonlyshort">'.($nbFiles + $nbLinks).'</span>';
@@ -71,7 +71,7 @@ function exratesupdaterPrepareHead($object)
 	$head[$h][2] = 'document';
 	$h++;
 
-	$head[$h][0] = dol_buildpath("/chtvaexchangerates/exratesupdater_agenda.php", 1).'?id='.$object->id;
+	$head[$h][0] = dol_buildpath("/chvatexchangerates/exratesupdater_agenda.php", 1).'?id='.$object->id;
 	$head[$h][1] = $langs->trans("Events");
 	$head[$h][2] = 'agenda';
 	$h++;
@@ -79,14 +79,14 @@ function exratesupdaterPrepareHead($object)
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
 	//$this->tabs = array(
-	//	'entity:+tabname:Title:@chtvaexchangerates:/chtvaexchangerates/mypage.php?id=__ID__'
+	//	'entity:+tabname:Title:@chvatexchangerates:/chvatexchangerates/mypage.php?id=__ID__'
 	//); // to add new tab
 	//$this->tabs = array(
-	//	'entity:-tabname:Title:@chtvaexchangerates:/chtvaexchangerates/mypage.php?id=__ID__'
+	//	'entity:-tabname:Title:@chvatexchangerates:/chvatexchangerates/mypage.php?id=__ID__'
 	//); // to remove a tab
-	complete_head_from_modules($conf, $langs, $object, $head, $h, 'exratesupdater@chtvaexchangerates');
+	complete_head_from_modules($conf, $langs, $object, $head, $h, 'exratesupdater@chvatexchangerates');
 
-	complete_head_from_modules($conf, $langs, $object, $head, $h, 'exratesupdater@chtvaexchangerates', 'remove');
+	complete_head_from_modules($conf, $langs, $object, $head, $h, 'exratesupdater@chvatexchangerates', 'remove');
 
 	return $head;
 }

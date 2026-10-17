@@ -18,7 +18,7 @@
 
 /**
  *   	\file       exratesupdater_card.php
- *		\ingroup    chtvaexchangerates
+ *		\ingroup    chvatexchangerates
  *		\brief      Page to create/edit/view exratesupdater
  */
 
@@ -78,11 +78,11 @@ if (!$res) {
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formcompany.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formfile.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formprojet.class.php';
-dol_include_once('/chtvaexchangerates/class/exratesupdater.class.php');
-dol_include_once('/chtvaexchangerates/lib/chtvaexchangerates_exratesupdater.lib.php');
+dol_include_once('/chvatexchangerates/class/exratesupdater.class.php');
+dol_include_once('/chvatexchangerates/lib/chvatexchangerates_exratesupdater.lib.php');
 
 // Load translation files required by the page
-$langs->loadLangs(array("chtvaexchangerates@chtvaexchangerates", "other"));
+$langs->loadLangs(array("chvatexchangerates@chvatexchangerates", "other"));
 
 // Get parameters
 $id = GETPOST('id', 'int');
@@ -98,7 +98,7 @@ $lineid   = GETPOST('lineid', 'int');
 // Initialize technical objects
 $object = new ExRatesUpdater($db);
 $extrafields = new ExtraFields($db);
-$diroutputmassaction = $conf->chtvaexchangerates->dir_output.'/temp/massgeneration/'.$user->id;
+$diroutputmassaction = $conf->chvatexchangerates->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array('exratesupdatercard', 'globalcard')); // Note that conf->hooks_modules contains array
 
 // Fetch optionals attributes and labels
@@ -126,11 +126,11 @@ include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be includ
 // Set $enablepermissioncheck to 1 to enable a minimum low level of checks
 $enablepermissioncheck = 0;
 if ($enablepermissioncheck) {
-	$permissiontoread = $user->rights->chtvaexchangerates->exratesupdater->read;
-	$permissiontoadd = $user->rights->chtvaexchangerates->exratesupdater->write; // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
-	$permissiontodelete = $user->rights->chtvaexchangerates->exratesupdater->delete || ($permissiontoadd && isset($object->status) && $object->status == $object::STATUS_DRAFT);
-	$permissionnote = $user->rights->chtvaexchangerates->exratesupdater->write; // Used by the include of actions_setnotes.inc.php
-	$permissiondellink = $user->rights->chtvaexchangerates->exratesupdater->write; // Used by the include of actions_dellink.inc.php
+	$permissiontoread = $user->rights->chvatexchangerates->exratesupdater->read;
+	$permissiontoadd = $user->rights->chvatexchangerates->exratesupdater->write; // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
+	$permissiontodelete = $user->rights->chvatexchangerates->exratesupdater->delete || ($permissiontoadd && isset($object->status) && $object->status == $object::STATUS_DRAFT);
+	$permissionnote = $user->rights->chvatexchangerates->exratesupdater->write; // Used by the include of actions_setnotes.inc.php
+	$permissiondellink = $user->rights->chvatexchangerates->exratesupdater->write; // Used by the include of actions_dellink.inc.php
 } else {
 	$permissiontoread = 1;
 	$permissiontoadd = 1; // Used by the include of actions_addupdatedelete.inc.php and actions_lineupdown.inc.php
@@ -139,14 +139,14 @@ if ($enablepermissioncheck) {
 	$permissiondellink = 1;
 }
 
-$upload_dir = $conf->chtvaexchangerates->multidir_output[isset($object->entity) ? $object->entity : 1].'/exratesupdater';
+$upload_dir = $conf->chvatexchangerates->multidir_output[isset($object->entity) ? $object->entity : 1].'/exratesupdater';
 
 // Security check (enable the most restrictive one)
 //if ($user->socid > 0) accessforbidden();
 //if ($user->socid > 0) $socid = $user->socid;
 //$isdraft = (isset($object->status) && ($object->status == $object::STATUS_DRAFT) ? 1 : 0);
 //restrictedArea($user, $object->element, $object->id, $object->table_element, '', 'fk_soc', 'rowid', $isdraft);
-if (empty($conf->chtvaexchangerates->enabled)) accessforbidden();
+if (empty($conf->chvatexchangerates->enabled)) accessforbidden();
 if (!$permissiontoread) accessforbidden();
 
 
@@ -163,19 +163,19 @@ if ($reshook < 0) {
 if (empty($reshook)) {
 	$error = 0;
 
-	$backurlforlist = dol_buildpath('/chtvaexchangerates/exratesupdater_list.php', 1);
+	$backurlforlist = dol_buildpath('/chvatexchangerates/exratesupdater_list.php', 1);
 
 	if (empty($backtopage) || ($cancel && empty($id))) {
 		if (empty($backtopage) || ($cancel && strpos($backtopage, '__ID__'))) {
 			if (empty($id) && (($action != 'add' && $action != 'create') || $cancel)) {
 				$backtopage = $backurlforlist;
 			} else {
-				$backtopage = dol_buildpath('/chtvaexchangerates/exratesupdater_card.php', 1).'?id='.((!empty($id) && $id > 0) ? $id : '__ID__');
+				$backtopage = dol_buildpath('/chvatexchangerates/exratesupdater_card.php', 1).'?id='.((!empty($id) && $id > 0) ? $id : '__ID__');
 			}
 		}
 	}
 
-	$triggermodname = 'CHTVAEXCHANGERATES_EXRATESUPDATER_MODIFY'; // Name of trigger action code to execute when we modify record
+	$triggermodname = 'CHVATEXCHANGERATES_EXRATESUPDATER_MODIFY'; // Name of trigger action code to execute when we modify record
 
 	// Actions cancel, add, update, update_extras, confirm_validate, confirm_delete, confirm_deleteline, confirm_clone, confirm_close, confirm_setdraft, confirm_reopen
 	include DOL_DOCUMENT_ROOT.'/core/actions_addupdatedelete.inc.php';
@@ -200,7 +200,7 @@ if (empty($reshook)) {
 	}
 
 	// Actions to send emails
-	$triggersendname = 'CHTVAEXCHANGERATES_EXRATESUPDATER_SENTBYMAIL';
+	$triggersendname = 'CHVATEXCHANGERATES_EXRATESUPDATER_SENTBYMAIL';
 	$autocopy = 'MAIN_MAIL_AUTOCOPY_EXRATESUPDATER_TO';
 	$trackid = 'exratesupdater'.$object->id;
 	include DOL_DOCUMENT_ROOT.'/core/actions_sendmails.inc.php';
@@ -371,7 +371,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 	// Object card
 	// ------------------------------------------------------------
-	$linkback = '<a href="'.dol_buildpath('/chtvaexchangerates/exratesupdater_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
+	$linkback = '<a href="'.dol_buildpath('/chvatexchangerates/exratesupdater_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	$morehtmlref = '<div class="refidno">';
 	/*
@@ -563,11 +563,11 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		if ($includedocgeneration) {
 			$objref = dol_sanitizeFileName($object->ref);
 			$relativepath = $objref.'/'.$objref.'.pdf';
-			$filedir = $conf->chtvaexchangerates->dir_output.'/'.$object->element.'/'.$objref;
+			$filedir = $conf->chvatexchangerates->dir_output.'/'.$object->element.'/'.$objref;
 			$urlsource = $_SERVER["PHP_SELF"]."?id=".$object->id;
 			$genallowed = $permissiontoread; // If you can read, you can build the PDF to read content
 			$delallowed = $permissiontoadd; // If you can create/edit, you can remove a file on card
-			print $formfile->showdocuments('chtvaexchangerates:ExRatesUpdater', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
+			print $formfile->showdocuments('chvatexchangerates:ExRatesUpdater', $object->element.'/'.$objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
 		}
 
 		// Show links to link elements
@@ -579,7 +579,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 		$MAXEVENT = 10;
 
-		$morehtmlcenter = dolGetButtonTitle($langs->trans('SeeAll'), '', 'fa fa-list-alt imgforviewmode', dol_buildpath('/chtvaexchangerates/exratesupdater_agenda.php', 1).'?id='.$object->id);
+		$morehtmlcenter = dolGetButtonTitle($langs->trans('SeeAll'), '', 'fa fa-list-alt imgforviewmode', dol_buildpath('/chvatexchangerates/exratesupdater_agenda.php', 1).'?id='.$object->id);
 
 		// List of actions on element
 		include_once DOL_DOCUMENT_ROOT.'/core/class/html.formactions.class.php';
@@ -597,7 +597,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	// Presend form
 	$modelmail = 'exratesupdater';
 	$defaulttopic = 'InformationMessage';
-	$diroutput = $conf->chtvaexchangerates->dir_output;
+	$diroutput = $conf->chvatexchangerates->dir_output;
 	$trackid = 'exratesupdater'.$object->id;
 
 	include DOL_DOCUMENT_ROOT.'/core/tpl/card_presend.tpl.php';

@@ -1,4 +1,4 @@
-# CHTVAEXCHANGERATES FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+# CHVATEXCHANGERATES FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 Made with love from Switzerland, by [Resilio Ltd.](https://resilio-solutions.com)
 
@@ -22,11 +22,11 @@ The exchange rates are synchronized daily via a cron job and stored in Dolibarr'
 1. Download the latest release from the [releases page](../../releases)
 2. Extract the module to `htdocs/custom/chvatexchangerates`
 3. Enable the module in Dolibarr: Home > Setup > Modules > Interfaces
-4. Configure the module in Home > Setup > Modules > CHTVAExchangeRates
+4. Configure the module in Home > Setup > Modules > CHVATExchangeRates
 
 ## Configuration
 
-1. Go to Home > Setup > Modules > CHTVAExchangeRates
+1. Go to Home > Setup > Modules > CHVATExchangeRates
 2. For Dolibarr v20+: Select a user for currency rate creation
 3. The cron job will be automatically created when the module is enabled
 

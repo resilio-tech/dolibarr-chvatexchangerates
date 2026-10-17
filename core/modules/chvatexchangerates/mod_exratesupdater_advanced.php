@@ -21,12 +21,12 @@
  */
 
 /**
- * \file       htdocs/core/modules/chtvaexchangerates/mod_exratesupdater_advanced.php
- * \ingroup    chtvaexchangerates
+ * \file       htdocs/core/modules/chvatexchangerates/mod_exratesupdater_advanced.php
+ * \ingroup    chvatexchangerates
  * \brief      File containing class for advanced numbering model of ExRatesUpdater
  */
 
-dol_include_once('/chtvaexchangerates/core/modules/chtvaexchangerates/modules_exratesupdater.php');
+dol_include_once('/chvatexchangerates/core/modules/chvatexchangerates/modules_exratesupdater.php');
 
 
 /**
@@ -68,7 +68,7 @@ class mod_exratesupdater_advanced extends ModeleNumRefExRatesUpdater
 		$texte .= '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">';
 		$texte .= '<input type="hidden" name="token" value="'.newToken().'">';
 		$texte .= '<input type="hidden" name="action" value="updateMask">';
-		$texte .= '<input type="hidden" name="maskconst" value="CHTVAEXCHANGERATES_EXRATESUPDATER_ADVANCED_MASK">';
+		$texte .= '<input type="hidden" name="maskconst" value="CHVATEXCHANGERATES_EXRATESUPDATER_ADVANCED_MASK">';
 		$texte .= '<table class="nobordernopadding centpercent">';
 
 		$tooltip = $langs->trans("GenericMaskCodes", $langs->transnoentities("ExRatesUpdater"), $langs->transnoentities("ExRatesUpdater"));
@@ -79,7 +79,7 @@ class mod_exratesupdater_advanced extends ModeleNumRefExRatesUpdater
 
 		// Parametrage du prefix
 		$texte .= '<tr><td>'.$langs->trans("Mask").':</td>';
-		$texte .= '<td class="right">'.$form->textwithpicto('<input type="text" class="flat minwidth175" name="maskvalue" value="'.$conf->global->CHTVAEXCHANGERATES_EXRATESUPDATER_ADVANCED_MASK.'">', $tooltip, 1, 1).'</td>';
+		$texte .= '<td class="right">'.$form->textwithpicto('<input type="text" class="flat minwidth175" name="maskvalue" value="'.$conf->global->CHVATEXCHANGERATES_EXRATESUPDATER_ADVANCED_MASK.'">', $tooltip, 1, 1).'</td>';
 		$texte .= '<td class="left" rowspan="2">&nbsp; <input type="submit" class="button button-edit" value="'.$langs->trans("Modify").'" name="Button"></td>';
 		$texte .= '</tr>';
 
@@ -130,7 +130,7 @@ class mod_exratesupdater_advanced extends ModeleNumRefExRatesUpdater
 		require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
 		// We get cursor rule
-		$mask = $conf->global->CHTVAEXCHANGERATES_EXRATESUPDATER_ADVANCED_MASK;
+		$mask = $conf->global->CHVATEXCHANGERATES_EXRATESUPDATER_ADVANCED_MASK;
 
 		if (!$mask) {
 			$this->error = 'NotConfigured';
@@ -139,7 +139,7 @@ class mod_exratesupdater_advanced extends ModeleNumRefExRatesUpdater
 
 		$date = $object->date;
 
-		$numFinal = get_next_value($db, $mask, 'chtvaexchangerates_exratesupdater', 'ref', '', null, $date);
+		$numFinal = get_next_value($db, $mask, 'chvatexchangerates_exratesupdater', 'ref', '', null, $date);
 
 		return  $numFinal;
 	}

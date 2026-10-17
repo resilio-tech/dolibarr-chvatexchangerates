@@ -23,8 +23,8 @@
  */
 
 /**
- *  \file			htdocs/core/modules/chtvaexchangerates/modules_exratesupdater.php
- *  \ingroup		chtvaexchangerates
+ *  \file			htdocs/core/modules/chvatexchangerates/modules_exratesupdater.php
+ *  \ingroup		chvatexchangerates
  *  \brief			File that contains parent class for exratesupdaters document models and parent class for exratesupdaters numbering models
  */
 
@@ -91,7 +91,7 @@ abstract class ModeleNumRefExRatesUpdater
 	public function info()
 	{
 		global $langs;
-		$langs->load("chtvaexchangerates@chtvaexchangerates");
+		$langs->load("chvatexchangerates@chvatexchangerates");
 		return $langs->trans("NoDescription");
 	}
 
@@ -103,7 +103,7 @@ abstract class ModeleNumRefExRatesUpdater
 	public function getExample()
 	{
 		global $langs;
-		$langs->load("chtvaexchangerates@chtvaexchangerates");
+		$langs->load("chvatexchangerates@chvatexchangerates");
 		return $langs->trans("NoExample");
 	}
 

@@ -19,9 +19,9 @@
  */
 
 /**
- *	\file       chtvaexchangerates/chtvaexchangeratesindex.php
- *	\ingroup    chtvaexchangerates
- *	\brief      Home page of chtvaexchangerates top menu
+ *	\file       chvatexchangerates/chvatexchangeratesindex.php
+ *	\ingroup    chvatexchangerates
+ *	\brief      Home page of chvatexchangerates top menu
  */
 
 // Load Dolibarr environment
@@ -58,13 +58,13 @@ if (!$res) {
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formfile.class.php';
 
 // Load translation files required by the page
-$langs->loadLangs(array("chtvaexchangerates@chtvaexchangerates"));
+$langs->loadLangs(array("chvatexchangerates@chvatexchangerates"));
 
 $action = GETPOST('action', 'aZ09');
 
 
 // Security check
-// if (! $user->rights->chtvaexchangerates->myobject->read) {
+// if (! $user->rights->chvatexchangerates->myobject->read) {
 // 	accessforbidden();
 // }
 $socid = GETPOST('socid', 'int');
@@ -90,18 +90,18 @@ $now = dol_now();
 $form = new Form($db);
 $formfile = new FormFile($db);
 
-llxHeader("", $langs->trans("CHTVAExchangeRatesArea"));
+llxHeader("", $langs->trans("CHVATExchangeRatesArea"));
 
-print load_fiche_titre($langs->trans("CHTVAExchangeRatesArea"), '', 'chtvaexchangerates.png@chtvaexchangerates');
+print load_fiche_titre($langs->trans("CHVATExchangeRatesArea"), '', 'chvatexchangerates.png@chvatexchangerates');
 
 print '<div class="fichecenter">';
 
 // Module information
-print '<div class="opacitymedium">'.$langs->trans("ModuleCHTVAExchangeRatesDesc").'</div>';
+print '<div class="opacitymedium">'.$langs->trans("ModuleCHVATExchangeRatesDesc").'</div>';
 print '<br>';
 
 // Link to setup
-print '<a href="'.dol_buildpath('/chtvaexchangerates/admin/setup.php', 1).'" class="butAction">'.$langs->trans("Setup").'</a>';
+print '<a href="'.dol_buildpath('/chvatexchangerates/admin/setup.php', 1).'" class="butAction">'.$langs->trans("Setup").'</a>';
 
 print '</div>';
 

@@ -32,7 +32,7 @@ jobs:
       - name: Get current version
         id: current
         run: |
-          CURRENT_VERSION=$(grep -oP "\\\$this->version\s*=\s*'\K[^']+" core/modules/modCHTVAExchangeRates.class.php)
+          CURRENT_VERSION=$(grep -oP "\\\$this->version\s*=\s*'\K[^']+" core/modules/modCHVATExchangeRates.class.php)
           echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
           echo "Current version: $CURRENT_VERSION"
 
@@ -80,7 +80,7 @@ jobs:
       - name: Update version in module descriptor
         if: steps.check.outputs.skip != 'true'
         run: |
-          sed -i "s/\$this->version = '[^']*'/\$this->version = '${{ steps.new.outputs.version }}'/" core/modules/modCHTVAExchangeRates.class.php
+          sed -i "s/\$this->version = '[^']*'/\$this->version = '${{ steps.new.outputs.version }}'/" core/modules/modCHVATExchangeRates.class.php
 
       - name: Update ChangeLog
         if: steps.check.outputs.skip != 'true'
@@ -108,7 +108,7 @@ jobs:
             This PR bumps the module version from `${{ steps.current.outputs.version }}` to `${{ steps.new.outputs.version }}`.
 
             ### Changes
-            - Updated version in `core/modules/modCHTVAExchangeRates.class.php`
+            - Updated version in `core/modules/modCHVATExchangeRates.class.php`
             - Updated `ChangeLog.md`
 
             ### Next Steps

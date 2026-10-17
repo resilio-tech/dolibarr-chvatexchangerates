@@ -17,7 +17,7 @@
 
 /**
  * \file       class/ExchangeRateParser.class.php
- * \ingroup    chtvaexchangerates
+ * \ingroup    chvatexchangerates
  * \brief      Class for parsing exchange rate data from Swiss customs API XML
  */
 
