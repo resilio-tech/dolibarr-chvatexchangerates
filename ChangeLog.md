@@ -1,5 +1,10 @@
 # CHANGELOG CHTVAEXCHANGERATES FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+## 1.2.0 - 2026-10-17
+
+- Version bump from 1.1.0
+
+
 ## 1.0.1 - Unreleased
 
 ### Changed
